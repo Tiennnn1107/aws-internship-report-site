@@ -1,0 +1,74 @@
+baseURL = "https://tienhuu-aws.devlab.id.vn/"
+relativeURLs = false
+canonifyURLs = false
+defaultContentLanguage = "en"
+
+# Change the default theme to be use when building the site with Hugo
+theme = "hugo-theme-learn"
+
+# For search functionality
+[outputs]
+home = [ "HTML", "RSS", "JSON"]
+
+[params]
+  # Change default color scheme with a variant one. Can be "red", "blue", "green".
+  themeVariant = "workshop"
+  # Git hub repo link
+  editURL = ""
+  description = "Personal AWS internship report site built with Hugo and the FCJ workshop template."
+  author = "Tien Huu"
+  showVisitedLinks = true
+  disableBreadcrumb = false
+  disableNextPrev = false
+  
+[Languages]
+[Languages.en]
+title = "AWS Internship Report Site"
+weight = 1
+languageName = "English"
+
+[[Languages.en.menu.shortcuts]]
+name = "<i class='fab fa-github'></i> GitHub Repository"
+identifier = "GitHub Repository"
+url = "https://github.com/tienhuu-dev/aws-internship-report-site"
+weight = 10
+
+[[Languages.en.menu.shortcuts]]
+name = "<i class='fab fa-facebook'></i> AWS Study Group"
+identifier = "AWS Study Group FB"
+url = "https://www.facebook.com/groups/awsstudygroupfcj/"
+weight = 20
+
+[[Languages.en.menu.shortcuts]]
+name = "<i class='fab fa-linkedin'></i> LinkedIn"
+identifier = "LinkedIn Profile"
+url = "https://www.linkedin.com/in/tien-huu-8a436a3a2"
+weight = 30
+
+[Languages.vi]
+title = "Website Báo Cáo Thực Tập AWS"
+weight = 2
+languageName = "Tiếng Việt"
+
+[[Languages.vi.menu.shortcuts]]
+name = "<i class='fab fa-github'></i> Mã nguồn GitHub"
+identifier = "GitHub Repository"
+url = "https://github.com/tienhuu-dev/aws-internship-report-site"
+weight = 10
+
+[[Languages.vi.menu.shortcuts]]
+name = "<i class='fab fa-facebook'></i> AWS Study Group"
+identifier = "AWS Study Group FB"
+url = "https://www.facebook.com/groups/awsstudygroupfcj/"
+weight = 20
+
+[[Languages.vi.menu.shortcuts]]
+name = "<i class='fab fa-linkedin'></i> LinkedIn"
+identifier = "LinkedIn Profile"
+url = "https://www.linkedin.com/in/tien-huu-8a436a3a2"
+weight = 30
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

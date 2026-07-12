@@ -72,6 +72,19 @@ button:focus-visible {
   font-size: 0.78em;
 }
 
+.blog-community-link {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3em;
+}
+
+.blog-community-link a,
+.blog-community-link span {
+  line-height: inherit;
+  vertical-align: baseline;
+}
+
 #navigation a.nav-prev,
 #navigation a.nav-next {
   transition: background 160ms ease, color 160ms ease, transform 160ms ease;

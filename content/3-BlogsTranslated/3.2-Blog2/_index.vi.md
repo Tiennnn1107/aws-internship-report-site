@@ -56,4 +56,4 @@ Sự kết hợp giữa AWS VAMS và 4D Pipeline cho thấy doanh nghiệp khôn
 
 Bài viết gốc: https://aws.amazon.com/vi/blogs/physical-ai/building-production-ready-3d-pipelines-with-aws-visual-asset-management-system-vams-and-4d-pipeline/
 
-Thảo luận trong cộng đồng: [Xem bài viết trên Facebook](https://www.facebook.com/share/p/1CuE7j59fd/)
+<p class="blog-community-link"><span>Thảo luận trong cộng đồng:</span><a href="https://www.facebook.com/share/p/1CuE7j59fd/">Xem bài viết trên Facebook</a></p>

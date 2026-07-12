@@ -51,4 +51,4 @@ AWS is clearly investing in the future of Agentic AI. Through Partner Agent Fact
 
 Original article: https://aws.amazon.com/vi/blogs/apn/aws-generative-ai-innovation-center-launches-partner-agent-factory/
 
-Community discussion: [View the post on Facebook](https://www.facebook.com/groups/awsstudygroupfcj/permalink/2208933749871585/)
+<p class="blog-community-link"><span>Community discussion:</span><a href="https://www.facebook.com/groups/awsstudygroupfcj/permalink/2208933749871585/">View the post on Facebook</a></p>

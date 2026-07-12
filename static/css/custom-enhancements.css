@@ -67,9 +67,19 @@ button:focus-visible {
   background: var(--enhancement-soft-surface-color);
 }
 
+#body-inner a[data-external-link="true"] {
+  align-items: baseline;
+  display: inline-flex;
+  line-height: inherit;
+  vertical-align: baseline;
+}
+
 #body-inner a[data-external-link="true"]::after {
   content: " ↗";
+  display: inline-block;
   font-size: 0.78em;
+  line-height: 1;
+  vertical-align: baseline;
 }
 
 .blog-community-link {

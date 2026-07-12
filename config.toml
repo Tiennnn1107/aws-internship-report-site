@@ -28,19 +28,19 @@ weight = 1
 languageName = "English"
 
 [[Languages.en.menu.shortcuts]]
-name = "<i class='fab fa-github'></i> GitHub Repository"
+name = "<i class='fab fa-fw fa-github'></i> GitHub Repository"
 identifier = "GitHub Repository"
-url = "https://github.com/Tiennnn1107"
+url = "https://github.com/Tiennnn1107/aws-internship-report-site"
 weight = 10
 
 [[Languages.en.menu.shortcuts]]
-name = "<i class='fab fa-facebook'></i> AWS Study Group"
+name = "<i class='fab fa-fw fa-facebook'></i> AWS Study Group"
 identifier = "AWS Study Group FB"
 url = "https://www.facebook.com/groups/awsstudygroupfcj/"
 weight = 20
 
 [[Languages.en.menu.shortcuts]]
-name = "<i class='fab fa-linkedin'></i> LinkedIn"
+name = "<i class='fab fa-fw fa-linkedin'></i> LinkedIn"
 identifier = "LinkedIn Profile"
 url = "https://www.linkedin.com/in/ti%E1%BA%BFn-tr%E1%BA%A7n-t%C3%A2n-752650403/"
 weight = 30
@@ -51,19 +51,19 @@ weight = 2
 languageName = "Tiếng Việt"
 
 [[Languages.vi.menu.shortcuts]]
-name = "<i class='fab fa-github'></i> Mã nguồn GitHub"
+name = "<i class='fab fa-fw fa-github'></i> Mã nguồn GitHub"
 identifier = "GitHub Repository"
-url = "https://github.com/Tiennnn1107"
+url = "https://github.com/Tiennnn1107/aws-internship-report-site"
 weight = 10
 
 [[Languages.vi.menu.shortcuts]]
-name = "<i class='fab fa-facebook'></i> AWS Study Group"
+name = "<i class='fab fa-fw fa-facebook'></i> AWS Study Group"
 identifier = "AWS Study Group FB"
 url = "https://www.facebook.com/groups/awsstudygroupfcj/"
 weight = 20
 
 [[Languages.vi.menu.shortcuts]]
-name = "<i class='fab fa-linkedin'></i> LinkedIn"
+name = "<i class='fab fa-fw fa-linkedin'></i> LinkedIn"
 identifier = "LinkedIn Profile"
 url = "https://www.linkedin.com/in/ti%E1%BA%BFn-tr%E1%BA%A7n-t%C3%A2n-752650403/"
 weight = 30

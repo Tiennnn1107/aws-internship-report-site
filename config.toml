@@ -1,6 +1,6 @@
-baseURL = "https://tienhuu-aws.devlab.id.vn/"
+baseURL = "https://tiennnn1107.github.io/aws-internship-report-site/"
 relativeURLs = false
-canonifyURLs = false
+canonifyURLs = true
 defaultContentLanguage = "en"
 
 # Change the default theme to be use when building the site with Hugo

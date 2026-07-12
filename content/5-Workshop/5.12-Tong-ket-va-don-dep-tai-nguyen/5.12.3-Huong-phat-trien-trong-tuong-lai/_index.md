@@ -30,18 +30,26 @@ After completing the current version, RecruitPro can evolve toward the following
 
 Actual cost depends on the region, instance sizes, storage, Internet traffic, and utilization. The main cost drivers are:
 
-| Resource group | Cost impact | Optimization guidance |
-|---|---:|---|
-| Multi-AZ EC2 and workers | High | Start small, monitor CPU/RAM, and scale based on demand |
-| RDS Multi-AZ and read replicas | High | Enable Multi-AZ for production and right-size the database and gp3 storage |
-| NAT Gateway | High with heavy data processing | Use an S3 Gateway Endpoint and minimize traffic through NAT |
-| ElastiCache Redis | Medium to high | Add it only after metrics confirm a database or session bottleneck |
-| CloudFront, WAF, and data transfer | Low to high depending on traffic | Improve cache hit ratio and keep WAF rules focused |
-| CloudWatch, SNS, and SES | Low for a demo workload | Set log retention and create only actionable alarms |
-| CI/CD, ECR, and S3 artifacts | Low to medium | Remove old images and artifacts with lifecycle policies |
+The estimate below assumes **730 hours/month**, the **Singapore Region (`ap-southeast-1`)**, a small-to-medium workload, **50–100 GB/month** of traffic, On-Demand pricing, and excludes taxes:
+
+| Resource group | Assumed configuration | Estimated monthly cost |
+|---|---|---:|
+| EC2 backend and worker | 2 `t3.small`/`t3.medium` instances with gp3 EBS | **USD 45–90** |
+| RDS MySQL Multi-AZ | `db.t3.small`/`db.t4g.small` with 20–50 GB gp3 | **USD 70–140** |
+| Application Load Balancer | 1 ALB with low-to-medium traffic | **USD 20–35** |
+| NAT Gateway | 2 NAT Gateways across 2 AZs plus data processing | **USD 75–110** |
+| ElastiCache Redis | 2 small nodes for Multi-AZ resilience | **USD 30–60** |
+| CloudFront, WAF, and transfer | 50–100 GB traffic with basic WAF rules | **USD 10–40** |
+| S3, EBS, snapshots, and ECR | CVs, static assets, artifacts, images, and backups | **USD 8–25** |
+| CloudWatch, SNS, and SES | 7–30 day log retention and light alert usage | **USD 5–25** |
+| CI/CD | Low-frequency CodePipeline, CodeBuild, and CodeDeploy usage | **USD 5–20** |
+| Cognito and SQS | Low user and message volume | **USD 0–15** |
+| **Estimated total** | Production architecture shown above | **Approximately USD 270–560/month** |
+
+A demo environment using **one EC2 instance, Single-AZ RDS, one NAT Gateway, and no Redis/WAF** may cost approximately **USD 90–180/month**. Turning off resources outside lab hours or replacing NAT traffic with suitable VPC endpoints can reduce it further.
 
 {{% notice note %}}
-Before production deployment, enter the expected `ap-southeast-1` resources and traffic into AWS Pricing Calculator. Create an AWS Budget and billing alerts to control monthly spending.
+These figures are planning ranges, not an AWS quotation. Before production deployment, enter the exact configuration into [AWS Pricing Calculator](https://calculator.aws/) and verify the official [Amazon EC2](https://aws.amazon.com/ec2/pricing/on-demand/), [Amazon RDS for MySQL](https://aws.amazon.com/rds/mysql/pricing/), and [Amazon VPC/NAT Gateway](https://aws.amazon.com/vpc/pricing/) pricing pages. Create an AWS Budget and billing alerts to control monthly spending.
 {{% /notice %}}
 
 ## Suggested roadmap

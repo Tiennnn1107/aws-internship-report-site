@@ -30,18 +30,26 @@ Sau khi hoàn thiện phiên bản hiện tại, RecruitPro có thể được m
 
 Chi phí thực tế phụ thuộc region, loại instance, dung lượng lưu trữ, lưu lượng Internet và mức sử dụng. Các nhóm chi phí chính của kiến trúc tương lai gồm:
 
-| Nhóm tài nguyên | Mức ảnh hưởng chi phí | Gợi ý tối ưu |
-|---|---:|---|
-| EC2 chạy Multi-AZ và worker | Cao | Bắt đầu với instance nhỏ, theo dõi CPU/RAM và dùng Auto Scaling theo nhu cầu |
-| RDS Multi-AZ và read replica | Cao | Chỉ bật Multi-AZ cho production; chọn đúng instance class và dung lượng gp3 |
-| NAT Gateway | Cao khi có nhiều dữ liệu xử lý | Dùng S3 Gateway Endpoint, hạn chế traffic đi qua NAT và cân nhắc một NAT cho môi trường demo |
-| ElastiCache Redis | Trung bình đến cao | Chỉ triển khai khi metric cho thấy database hoặc session là điểm nghẽn |
-| CloudFront, WAF và truyền dữ liệu | Thấp đến cao tùy traffic | Tối ưu cache hit ratio, giới hạn WAF rule và theo dõi data transfer |
-| CloudWatch Logs, SNS và SES | Thấp ở quy mô demo | Đặt log retention, lọc log không cần thiết và tạo alarm theo ngưỡng hữu ích |
-| CI/CD, ECR và artifact S3 | Thấp đến trung bình | Xóa image/artifact cũ bằng lifecycle policy và chỉ chạy pipeline khi cần |
+Ước tính dưới đây sử dụng **730 giờ/tháng**, region **Singapore (`ap-southeast-1`)**, workload nhỏ–trung bình, khoảng **50–100 GB lưu lượng/tháng**, giá On-Demand và chưa bao gồm thuế:
+
+| Nhóm tài nguyên | Cấu hình giả định | Chi phí ước tính/tháng |
+|---|---|---:|
+| EC2 backend và worker | 2 EC2 cỡ `t3.small`/`t3.medium`, EBS gp3 | **45–90 USD** |
+| RDS MySQL Multi-AZ | `db.t3.small`/`db.t4g.small`, 20–50 GB gp3 | **70–140 USD** |
+| Application Load Balancer | 1 ALB và lưu lượng thấp–trung bình | **20–35 USD** |
+| NAT Gateway | 2 NAT Gateway cho 2 AZ và phí xử lý dữ liệu | **75–110 USD** |
+| ElastiCache Redis | 2 node nhỏ để dự phòng Multi-AZ | **30–60 USD** |
+| CloudFront, WAF và data transfer | Traffic 50–100 GB, số rule cơ bản | **10–40 USD** |
+| S3, EBS, snapshot và ECR | CV, static asset, artifact, image và backup | **8–25 USD** |
+| CloudWatch, SNS và SES | Log retention 7–30 ngày, alarm và email mức thấp | **5–25 USD** |
+| CI/CD | CodePipeline, CodeBuild và CodeDeploy ở tần suất thấp | **5–20 USD** |
+| Cognito và SQS | Lượng người dùng và message thấp | **0–15 USD** |
+| **Tổng dự kiến** | Kiến trúc production trong hình | **Khoảng 270–560 USD/tháng** |
+
+Với môi trường demo chỉ dùng **1 EC2, RDS Single-AZ, 1 NAT Gateway và chưa bật Redis/WAF**, chi phí có thể giảm còn khoảng **90–180 USD/tháng**. Nếu tắt tài nguyên ngoài giờ học hoặc thay NAT Gateway bằng thiết kế endpoint phù hợp, chi phí có thể thấp hơn nữa.
 
 {{% notice note %}}
-Trước khi triển khai production, cần nhập đúng region `ap-southeast-1`, cấu hình instance và lưu lượng dự kiến vào AWS Pricing Calculator. Nên tạo AWS Budget và cảnh báo chi phí để kiểm soát mức sử dụng hàng tháng.
+Các số liệu trên là khoảng ước tính để lập kế hoạch, không phải báo giá của AWS. Trước khi triển khai production, cần nhập đúng cấu hình vào [AWS Pricing Calculator](https://calculator.aws/) và kiểm tra các trang giá chính thức của [Amazon EC2](https://aws.amazon.com/ec2/pricing/on-demand/), [Amazon RDS for MySQL](https://aws.amazon.com/rds/mysql/pricing/) và [Amazon VPC/NAT Gateway](https://aws.amazon.com/vpc/pricing/). Nên tạo AWS Budget và cảnh báo chi phí để kiểm soát mức sử dụng hàng tháng.
 {{% /notice %}}
 
 ## Lộ trình triển khai đề xuất

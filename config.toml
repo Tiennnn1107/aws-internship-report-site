@@ -30,7 +30,7 @@ languageName = "English"
 [[Languages.en.menu.shortcuts]]
 name = "<i class='fab fa-github'></i> GitHub Repository"
 identifier = "GitHub Repository"
-url = "https://github.com/tienhuu-dev/aws-internship-report-site"
+url = "https://github.com/Tiennnn1107"
 weight = 10
 
 [[Languages.en.menu.shortcuts]]
@@ -42,7 +42,7 @@ weight = 20
 [[Languages.en.menu.shortcuts]]
 name = "<i class='fab fa-linkedin'></i> LinkedIn"
 identifier = "LinkedIn Profile"
-url = "https://www.linkedin.com/in/tien-huu-8a436a3a2"
+url = "https://www.linkedin.com/in/ti%E1%BA%BFn-tr%E1%BA%A7n-t%C3%A2n-752650403/"
 weight = 30
 
 [Languages.vi]
@@ -53,7 +53,7 @@ languageName = "Tiếng Việt"
 [[Languages.vi.menu.shortcuts]]
 name = "<i class='fab fa-github'></i> Mã nguồn GitHub"
 identifier = "GitHub Repository"
-url = "https://github.com/tienhuu-dev/aws-internship-report-site"
+url = "https://github.com/Tiennnn1107"
 weight = 10
 
 [[Languages.vi.menu.shortcuts]]
@@ -65,7 +65,7 @@ weight = 20
 [[Languages.vi.menu.shortcuts]]
 name = "<i class='fab fa-linkedin'></i> LinkedIn"
 identifier = "LinkedIn Profile"
-url = "https://www.linkedin.com/in/tien-huu-8a436a3a2"
+url = "https://www.linkedin.com/in/ti%E1%BA%BFn-tr%E1%BA%A7n-t%C3%A2n-752650403/"
 weight = 30
 
 [markup]

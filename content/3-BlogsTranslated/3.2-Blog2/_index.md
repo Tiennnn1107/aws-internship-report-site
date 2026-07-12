@@ -56,4 +56,4 @@ The combination of AWS VAMS and 4D Pipeline shows that enterprises do not need t
 
 Original article: https://aws.amazon.com/vi/blogs/physical-ai/building-production-ready-3d-pipelines-with-aws-visual-asset-management-system-vams-and-4d-pipeline/
 
-Community discussion: https://www.facebook.com/share/p/1CuE7j59fd/
+Community discussion: [View the post on Facebook](https://www.facebook.com/share/p/1CuE7j59fd/)

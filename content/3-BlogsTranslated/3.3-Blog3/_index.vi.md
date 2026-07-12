@@ -51,4 +51,4 @@ AWS đang đầu tư rất mạnh vào xu hướng Agentic AI. Thông qua Partne
 
 Bài viết gốc: https://aws.amazon.com/vi/blogs/apn/aws-generative-ai-innovation-center-launches-partner-agent-factory/
 
-Thảo luận trong cộng đồng: https://www.facebook.com/groups/awsstudygroupfcj/permalink/2208933749871585/
+Thảo luận trong cộng đồng: [Xem bài viết trên Facebook](https://www.facebook.com/groups/awsstudygroupfcj/permalink/2208933749871585/)

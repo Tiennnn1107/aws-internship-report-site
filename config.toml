@@ -25,7 +25,7 @@ home = [ "HTML", "RSS", "JSON"]
 [Languages.en]
 title = "AWS Internship Report Site"
 weight = 1
-languageName = "English"
+Label = "English"
 
 [[Languages.en.menu.shortcuts]]
 name = "<i class='fab fa-fw fa-github'></i> GitHub Repository"
@@ -48,7 +48,7 @@ weight = 30
 [Languages.vi]
 title = "Website Báo Cáo Thực Tập AWS"
 weight = 2
-languageName = "Tiếng Việt"
+Label = "Tiếng Việt"
 
 [[Languages.vi.menu.shortcuts]]
 name = "<i class='fab fa-fw fa-github'></i> Mã nguồn GitHub"
@@ -72,3 +72,8 @@ weight = 30
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+# Local development settings. Production builds keep the GitHub Pages baseURL above.
+[development]
+baseURL = "http://localhost:1313/aws-internship-report-site/"
+canonifyURLs = false
+relativeURLs = true

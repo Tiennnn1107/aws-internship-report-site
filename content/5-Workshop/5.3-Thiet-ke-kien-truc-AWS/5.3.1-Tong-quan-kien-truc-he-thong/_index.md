@@ -7,3 +7,5 @@ pre: " <b> 5.3.1. </b> "
 ---
 
 ### 5.3.1. Tổng quan kiến trúc hệ thống
+
+![Current AWS architecture](/images/5-Workshop/5.3-Thiet-ke-kien-truc-AWS/5.3.1-Tong-quan-kien-truc-he-thong/hientai.jpg)

@@ -18,23 +18,30 @@
     padding-left: 4px;
   }
 </style>
+
 <div class="ghContributors">
-  {{ $url := .Get 0 }} {{ range getJSON $url }}
-  <div>
-    <img
-      src="{{.avatar_url}}"
-      class="inline"
-      width="32"
-      height="32"
-      style="
-        height: 32px;
-        height: 32px;
-        margin-bottom: 0.25em;
-        vertical-align: middle;
-      "
-    />
-    <label><a href="{{.html_url}}">@{{.login}}</a></label>
-    <span class="contributions">{{.contributions}} commits</span>
-  </div>
+  {{ $url := .Get 0 }}
+  {{ $res := resources.GetRemote $url }}
+  
+  {{ if $res }}
+    {{ range ($res.Content | transform.Unmarshal) }}
+    <div>
+      <img
+        src="{{ .avatar_url }}"
+        class="inline"
+        width="32"
+        height="32"
+        style="
+          height: 32px;
+          margin-bottom: 0.25em;
+          vertical-align: middle;
+        "
+      />
+      <label><a href="{{ .html_url }}">@{{ .login }}</a></label>
+      <span class="contributions">{{ .contributions }} commits</span>
+    </div>
+    {{ end }}
+  {{ else }}
+    <p style="color: red;">Không thể tải dữ liệu từ GitHub Contributors API.</p>
   {{ end }}
 </div>

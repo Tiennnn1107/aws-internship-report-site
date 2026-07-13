@@ -8,6 +8,8 @@ pre: " <b> 5.5.4. </b> "
 
 ### 5.5.4. Import dữ liệu vào RDS
 
+Sau khi hoàn thành mục 5.5.3, từ EC2 backend kiểm tra lại endpoint, port `3306`, username `admin` và quyền truy cập của Security Group. Thay `<RDS_ENDPOINT>` bằng hostname thực tế của RDS; không thêm `http://` hoặc `https://`. Khi nhập mật khẩu, terminal không hiển thị ký tự là hoạt động bình thường.
+
 Từ EC2, kết nối đến RDS MySQL bằng tài khoản quản trị:
 
 ```bash

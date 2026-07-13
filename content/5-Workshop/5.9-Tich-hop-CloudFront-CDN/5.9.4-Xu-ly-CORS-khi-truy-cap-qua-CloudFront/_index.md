@@ -7,3 +7,5 @@ pre: " <b> 5.9.4. </b> "
 ---
 
 ### 5.9.4. Xử lý CORS khi truy cập qua CloudFront
+
+![Cấu hình CORS](</images/5-Workshop/5.9-Tich-hop-CloudFront-CDN/5.9.4-Xu-ly-CORS-khi-truy-cap-qua-CloudFront/cloudfront%204.png>)

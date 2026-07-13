@@ -7,3 +7,5 @@ pre: " <b> 5.8.4. </b> "
 ---
 
 ### 5.8.4. Kiểm tra truy cập ứng dụng qua ALB DNS
+
+![Ứng dụng truy cập qua ALB](</images/5-Workshop/5.8-Public-ung-dung-voi-Application-Load-Balancer/5.8.4-Kiem-tra-truy-cap-ung-dung-qua-ALB-DNS/alb%205.png>)

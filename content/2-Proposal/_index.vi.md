@@ -5,104 +5,210 @@ weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+# RecruitBox — Cloud-Based Recruitment Platform on AWS
 
-Tại phần này, bạn cần tóm tắt các nội dung trong workshop mà bạn **dự tính** sẽ làm.
+## Giải pháp triển khai hệ thống tuyển dụng trực tuyến trên AWS
 
-# IoT Weather Platform for Lab Research  
-## Giải pháp AWS Serverless hợp nhất cho giám sát thời tiết thời gian thực  
+## 1. Tóm tắt điều hành
 
-### 1. Tóm tắt điều hành  
-IoT Weather Platform được thiết kế dành cho nhóm *ITea Lab* tại TP. Hồ Chí Minh nhằm nâng cao khả năng thu thập và phân tích dữ liệu thời tiết. Nền tảng hỗ trợ tối đa 5 trạm thời tiết, có khả năng mở rộng lên 10–15 trạm, sử dụng thiết bị biên Raspberry Pi kết hợp cảm biến ESP32 để truyền dữ liệu qua MQTT. Nền tảng tận dụng các dịch vụ AWS Serverless để cung cấp giám sát thời gian thực, phân tích dự đoán và tiết kiệm chi phí, với quyền truy cập giới hạn cho 5 thành viên phòng lab thông qua Amazon Cognito.  
+RecruitBox là hệ thống tuyển dụng trực tuyến được triển khai trên AWS nhằm hỗ trợ quy trình tuyển dụng giữa ứng viên, nhà tuyển dụng và quản trị viên. Hệ thống cho phép người dùng đăng ký, đăng nhập, xem danh sách việc làm, cập nhật hồ sơ cá nhân, upload CV và quản lý dữ liệu tuyển dụng. Ứng dụng được xây dựng bằng Spring Boot, Thymeleaf và MySQL, sau đó được triển khai lên hạ tầng AWS theo mô hình web application thực tế.
 
-### 2. Tuyên bố vấn đề  
-*Vấn đề hiện tại*  
-Các trạm thời tiết hiện tại yêu cầu thu thập dữ liệu thủ công, khó quản lý khi có nhiều trạm. Không có hệ thống tập trung cho dữ liệu hoặc phân tích thời gian thực, và các nền tảng bên thứ ba thường tốn kém và quá phức tạp.  
+Giải pháp sử dụng Amazon EC2 để chạy backend Spring Boot, Amazon RDS MySQL để lưu trữ dữ liệu quan hệ, Amazon S3 để lưu trữ CV và deployment artifacts, Application Load Balancer để phân phối request đến backend, CloudFront để cung cấp lớp truy cập CDN/HTTPS phía trước ALB, và CloudWatch kết hợp SNS để giám sát và gửi cảnh báo qua email.
 
-*Giải pháp*  
-Nền tảng sử dụng AWS IoT Core để tiếp nhận dữ liệu MQTT, AWS Lambda và API Gateway để xử lý, Amazon S3 để lưu trữ (bao gồm data lake), và AWS Glue Crawlers cùng các tác vụ ETL để trích xuất, chuyển đổi, tải dữ liệu từ S3 data lake sang một S3 bucket khác để phân tích. AWS Amplify với Next.js cung cấp giao diện web, và Amazon Cognito đảm bảo quyền truy cập an toàn. Tương tự như Thingsboard và CoreIoT, người dùng có thể đăng ký thiết bị mới và quản lý kết nối, nhưng nền tảng này hoạt động ở quy mô nhỏ hơn và phục vụ mục đích sử dụng nội bộ. Các tính năng chính bao gồm bảng điều khiển thời gian thực, phân tích xu hướng và chi phí vận hành thấp.  
+Hệ thống được triển khai trong một VPC riêng tại region Asia Pacific (Singapore), với public subnet cho ALB/NAT Gateway và private subnet cho EC2 backend và RDS database. Thiết kế này giúp tách biệt các thành phần public và private, tăng tính bảo mật và mô phỏng gần hơn với kiến trúc cloud production thực tế.
 
-*Lợi ích và hoàn vốn đầu tư (ROI)*  
-Giải pháp tạo nền tảng cơ bản để các thành viên phòng lab phát triển một nền tảng IoT lớn hơn, đồng thời cung cấp nguồn dữ liệu cho những người nghiên cứu AI phục vụ huấn luyện mô hình hoặc phân tích. Nền tảng giảm bớt báo cáo thủ công cho từng trạm thông qua hệ thống tập trung, đơn giản hóa quản lý và bảo trì, đồng thời cải thiện độ tin cậy dữ liệu. Chi phí hàng tháng ước tính 0,66 USD (theo AWS Pricing Calculator), tổng cộng 7,92 USD cho 12 tháng. Tất cả thiết bị IoT đã được trang bị từ hệ thống trạm thời tiết hiện tại, không phát sinh chi phí phát triển thêm. Thời gian hoàn vốn 6–12 tháng nhờ tiết kiệm đáng kể thời gian thao tác thủ công.  
+## 2. Tuyên bố vấn đề
 
-### 3. Kiến trúc giải pháp  
-Nền tảng áp dụng kiến trúc AWS Serverless để quản lý dữ liệu từ 5 trạm dựa trên Raspberry Pi, có thể mở rộng lên 15 trạm. Dữ liệu được tiếp nhận qua AWS IoT Core, lưu trữ trong S3 data lake và xử lý bởi AWS Glue Crawlers và ETL jobs để chuyển đổi và tải vào một S3 bucket khác cho mục đích phân tích. Lambda và API Gateway xử lý bổ sung, trong khi Amplify với Next.js cung cấp bảng điều khiển được bảo mật bởi Cognito.  
+### Vấn đề hiện tại
 
-![IoT Weather Station Architecture](/images/2-Proposal/edge_architecture.jpeg)
+Trong các hệ thống tuyển dụng truyền thống, việc quản lý ứng viên, hồ sơ cá nhân, CV và thông tin tuyển dụng thường được thực hiện rời rạc qua email, file lưu trữ thủ công hoặc database nội bộ. Cách tiếp cận này gây khó khăn trong việc mở rộng, quản lý file CV, giám sát hệ thống và đảm bảo khả năng truy cập ổn định cho người dùng.
 
-![IoT Weather Platform Architecture](/images/2-Proposal/platform_architecture.jpeg)
+Ngoài ra, nếu ứng dụng chỉ chạy trên máy local hoặc một server đơn lẻ, hệ thống sẽ thiếu các yếu tố quan trọng như phân tách network, kiểm soát truy cập, lưu trữ file tập trung, monitoring, cảnh báo lỗi và khả năng mở rộng trong tương lai.
 
-*Dịch vụ AWS sử dụng*  
-- *AWS IoT Core*: Tiếp nhận dữ liệu MQTT từ 5 trạm, mở rộng lên 15.  
-- *AWS Lambda*: Xử lý dữ liệu và kích hoạt Glue jobs (2 hàm).  
-- *Amazon API Gateway*: Giao tiếp với ứng dụng web.  
-- *Amazon S3*: Lưu trữ dữ liệu thô (data lake) và dữ liệu đã xử lý (2 bucket).  
-- *AWS Glue*: Crawlers lập chỉ mục dữ liệu, ETL jobs chuyển đổi và tải dữ liệu.  
-- *AWS Amplify*: Lưu trữ giao diện web Next.js.  
-- *Amazon Cognito*: Quản lý quyền truy cập cho người dùng phòng lab.  
+### Giải pháp
 
-*Thiết kế thành phần*  
-- *Thiết bị biên*: Raspberry Pi thu thập và lọc dữ liệu cảm biến, gửi tới IoT Core.  
-- *Tiếp nhận dữ liệu*: AWS IoT Core nhận tin nhắn MQTT từ thiết bị biên.  
-- *Lưu trữ dữ liệu*: Dữ liệu thô lưu trong S3 data lake; dữ liệu đã xử lý lưu ở một S3 bucket khác.  
-- *Xử lý dữ liệu*: AWS Glue Crawlers lập chỉ mục dữ liệu; ETL jobs chuyển đổi để phân tích.  
-- *Giao diện web*: AWS Amplify lưu trữ ứng dụng Next.js cho bảng điều khiển và phân tích thời gian thực.  
-- *Quản lý người dùng*: Amazon Cognito giới hạn 5 tài khoản hoạt động.  
+RecruitBox được triển khai trên AWS để giải quyết các vấn đề trên bằng cách xây dựng một hệ thống tuyển dụng có kiến trúc cloud rõ ràng. Ứng dụng backend được triển khai trên EC2 trong private subnet, database được lưu trong Amazon RDS MySQL cũng ở private subnet, trong khi Application Load Balancer nằm ở public subnet để tiếp nhận request từ người dùng.
 
-### 4. Triển khai kỹ thuật  
-*Các giai đoạn triển khai*  
-Dự án gồm 2 phần — thiết lập trạm thời tiết biên và xây dựng nền tảng thời tiết — mỗi phần trải qua 4 giai đoạn:  
-1. *Nghiên cứu và vẽ kiến trúc*: Nghiên cứu Raspberry Pi với cảm biến ESP32 và thiết kế kiến trúc AWS Serverless (1 tháng trước kỳ thực tập).  
-2. *Tính toán chi phí và kiểm tra tính khả thi*: Sử dụng AWS Pricing Calculator để ước tính và điều chỉnh (Tháng 1).  
-3. *Điều chỉnh kiến trúc để tối ưu chi phí/giải pháp*: Tinh chỉnh (ví dụ tối ưu Lambda với Next.js) để đảm bảo hiệu quả (Tháng 2).  
-4. *Phát triển, kiểm thử, triển khai*: Lập trình Raspberry Pi, AWS services với CDK/SDK và ứng dụng Next.js, sau đó kiểm thử và đưa vào vận hành (Tháng 2–3).  
+Amazon S3 được sử dụng để lưu trữ file CV của ứng viên và file artifact dùng cho quá trình deploy ứng dụng. IAM Role và IAM Policy được cấu hình để EC2 có thể truy cập S3 một cách an toàn mà không cần hard-code access key. CloudWatch được dùng để theo dõi EC2, ALB và RDS, trong khi SNS gửi email cảnh báo khi có alarm xảy ra.
 
-*Yêu cầu kỹ thuật*  
-- *Trạm thời tiết biên*: Cảm biến (nhiệt độ, độ ẩm, lượng mưa, tốc độ gió), vi điều khiển ESP32, Raspberry Pi làm thiết bị biên. Raspberry Pi chạy Raspbian, sử dụng Docker để lọc dữ liệu và gửi 1 MB/ngày/trạm qua MQTT qua Wi-Fi.  
-- *Nền tảng thời tiết*: Kiến thức thực tế về AWS Amplify (lưu trữ Next.js), Lambda (giảm thiểu do Next.js xử lý), AWS Glue (ETL), S3 (2 bucket), IoT Core (gateway và rules), và Cognito (5 người dùng). Sử dụng AWS CDK/SDK để lập trình (ví dụ IoT Core rules tới S3). Next.js giúp giảm tải Lambda cho ứng dụng web fullstack.  
+CloudFront được tích hợp phía trước ALB để cung cấp lớp CDN/HTTPS và cải thiện mô hình truy cập của hệ thống. Ngoài ra, Systems Manager Session Manager được dùng để truy cập EC2 private instance mà không cần mở SSH public.
 
-### 5. Lộ trình & Mốc triển khai  
-- *Trước thực tập (Tháng 0)*: 1 tháng lên kế hoạch và đánh giá trạm cũ.  
-- *Thực tập (Tháng 1–3)*:  
-    - Tháng 1: Học AWS và nâng cấp phần cứng.  
-    - Tháng 2: Thiết kế và điều chỉnh kiến trúc.  
-    - Tháng 3: Triển khai, kiểm thử, đưa vào sử dụng.  
-- *Sau triển khai*: Nghiên cứu thêm trong vòng 1 năm.  
+### Lợi ích và giá trị mang lại
 
-### 6. Ước tính ngân sách  
-Có thể xem chi phí trên [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01)  
-Hoặc tải [tệp ước tính ngân sách](../attachments/budget_estimation.pdf).  
+Giải pháp giúp hệ thống tuyển dụng có khả năng vận hành trên môi trường cloud thực tế, thay vì chỉ chạy local. Dữ liệu ứng viên, thông tin việc làm và hồ sơ được lưu trữ trong RDS MySQL; file CV được lưu riêng trên S3; backend được đặt trong private subnet để giảm rủi ro bảo mật; và hệ thống có monitoring/alert để phát hiện lỗi sớm.
 
-*Chi phí hạ tầng*  
-- AWS Lambda: 0,00 USD/tháng (1.000 request, 512 MB lưu trữ).  
-- S3 Standard: 0,15 USD/tháng (6 GB, 2.100 request, 1 GB quét).  
-- Truyền dữ liệu: 0,02 USD/tháng (1 GB vào, 1 GB ra).  
-- AWS Amplify: 0,35 USD/tháng (256 MB, request 500 ms).  
-- Amazon API Gateway: 0,01 USD/tháng (2.000 request).  
-- AWS Glue ETL Jobs: 0,02 USD/tháng (2 DPU).  
-- AWS Glue Crawlers: 0,07 USD/tháng (1 crawler).  
-- MQTT (IoT Core): 0,08 USD/tháng (5 thiết bị, 45.000 tin nhắn).  
+Về mặt học tập và workshop, project thể hiện được cách kết hợp nhiều dịch vụ AWS để xây dựng một ứng dụng thực tế, bao gồm compute, database, storage, networking, security, content delivery và monitoring. Đây là nền tảng tốt để phát triển thêm các tính năng như CI/CD, Auto Scaling, HTTPS custom domain, Cognito authentication hoặc pipeline xử lý CV trong tương lai.
 
-*Tổng*: 0,7 USD/tháng, 8,40 USD/12 tháng  
-- *Phần cứng*: 265 USD một lần (Raspberry Pi 5 và cảm biến).  
+## 3. Kiến trúc giải pháp
 
-### 7. Đánh giá rủi ro  
-*Ma trận rủi ro*  
-- Mất mạng: Ảnh hưởng trung bình, xác suất trung bình.  
-- Hỏng cảm biến: Ảnh hưởng cao, xác suất thấp.  
-- Vượt ngân sách: Ảnh hưởng trung bình, xác suất thấp.  
+RecruitBox sử dụng kiến trúc cloud web application trên AWS. Người dùng truy cập hệ thống thông qua CloudFront hoặc trực tiếp qua Application Load Balancer. ALB nhận request HTTP và chuyển tiếp đến EC2 backend đang chạy ứng dụng Spring Boot. Backend xử lý nghiệp vụ, xác thực người dùng, đọc/ghi dữ liệu vào Amazon RDS MySQL và upload file CV lên Amazon S3.
 
-*Chiến lược giảm thiểu*  
-- Mạng: Lưu trữ cục bộ trên Raspberry Pi với Docker.  
-- Cảm biến: Kiểm tra định kỳ, dự phòng linh kiện.  
-- Chi phí: Cảnh báo ngân sách AWS, tối ưu dịch vụ.  
+Hệ thống được triển khai bên trong một VPC riêng. Public subnet chứa Application Load Balancer và NAT Gateway. Private app subnet chứa EC2 backend, còn private database subnet chứa RDS MySQL. Route table, Internet Gateway, NAT Gateway và Security Group được cấu hình để kiểm soát luồng truy cập giữa các thành phần.
 
-*Kế hoạch dự phòng*  
-- Quay lại thu thập thủ công nếu AWS gặp sự cố.  
-- Sử dụng CloudFormation để khôi phục cấu hình liên quan đến chi phí.  
+CloudWatch thu thập metric từ EC2, ALB và RDS. Các CloudWatch Alarm được cấu hình cho EC2 CPU cao, ALB Target 5XX, ALB Unhealthy Target, RDS CPU cao và RDS Low Storage. Khi alarm được kích hoạt, CloudWatch gửi sự kiện đến SNS Topic và SNS gửi email cảnh báo cho quản trị viên.
+![mô hình kiến trúc](/images/2-Proposal/architected.jpg)
 
-### 8. Kết quả kỳ vọng  
-*Cải tiến kỹ thuật*: Dữ liệu và phân tích thời gian thực thay thế quy trình thủ công. Có thể mở rộng tới 10–15 trạm.  
-*Giá trị dài hạn*: Nền tảng dữ liệu 1 năm cho nghiên cứu AI, có thể tái sử dụng cho các dự án tương lai.
+### Luồng kiến trúc tổng quan
+
+```text
+User
+→ CloudFront
+→ Application Load Balancer
+→ EC2 Spring Boot Backend
+→ Amazon RDS MySQL
+
+EC2 Spring Boot Backend
+→ Amazon S3 CV Storage
+
+EC2 / ALB / RDS
+→ CloudWatch Alarm
+→ SNS Topic
+→ Admin Email
+```
+
+### Dịch vụ AWS sử dụng
+
+- **Amazon VPC:** Tạo mạng riêng cho toàn bộ hệ thống, bao gồm public subnet, private app subnet và private database subnet.
+- **Public Subnet:** Chứa ALB và NAT Gateway, cho phép các thành phần public tiếp nhận request từ Internet.
+- **Private App Subnet:** Chứa EC2 backend để ứng dụng không bị public trực tiếp ra Internet.
+- **Private DB Subnet:** Chứa RDS MySQL để database chỉ có thể truy cập từ backend.
+- **Internet Gateway:** Cho phép public subnet kết nối Internet.
+- **NAT Gateway:** Cho phép EC2 trong private subnet tải package, truy cập S3 hoặc Internet outbound mà không cần public IP.
+- **Route Table:** Điều hướng traffic giữa public subnet, private subnet, Internet Gateway và NAT Gateway.
+- **Security Group:** Kiểm soát inbound/outbound traffic giữa ALB, EC2 và RDS.
+- **IAM Role/Policy:** Cấp quyền cho EC2 truy cập S3 bucket mà không cần lưu access key trong source code.
+- **Amazon EC2:** Chạy ứng dụng Spring Boot backend dưới dạng file JAR và quản lý bằng systemd service.
+- **Amazon RDS MySQL:** Lưu trữ dữ liệu quan hệ như user, job posting, candidate profile, application và thông tin tuyển dụng.
+- **Amazon S3:** Lưu trữ CV của ứng viên, file JAR deploy artifact và file database backup/import.
+- **Application Load Balancer:** Public endpoint của hệ thống, nhận request từ người dùng và forward đến EC2 backend.
+- **Amazon CloudFront:** CDN/HTTPS layer phía trước ALB, giúp hệ thống có endpoint HTTPS dạng `cloudfront.net` và hỗ trợ phân phối nội dung.
+- **AWS Systems Manager Session Manager:** Truy cập EC2 private instance mà không cần mở SSH public.
+- **Amazon CloudWatch:** Theo dõi metric của EC2, ALB và RDS.
+- **Amazon SNS:** Gửi email cảnh báo cho admin khi CloudWatch Alarm được kích hoạt.
+
+## 4. Triển khai kỹ thuật
+
+### Các giai đoạn triển khai
+
+Dự án được triển khai theo nhiều giai đoạn, bắt đầu từ phân tích ứng dụng, thiết kế kiến trúc AWS, tạo hạ tầng mạng, triển khai database, deploy backend, public ứng dụng, tích hợp CloudFront và cuối cùng là cấu hình monitoring.
+
+Giai đoạn đầu tiên là chuẩn bị source code Spring Boot, database MySQL và file JAR build từ local. Sau đó, hạ tầng AWS được thiết kế với VPC, public/private subnet, route table, Internet Gateway và NAT Gateway để tách biệt các thành phần public và private.
+
+Tiếp theo, Amazon RDS MySQL được tạo trong private database subnet. EC2 backend được tạo trong private app subnet, gắn IAM Role để truy cập S3 và sử dụng Systems Manager Session Manager để kết nối. Ứng dụng Spring Boot được deploy lên EC2 dưới dạng `app.jar`, chạy bằng systemd service.
+
+Sau khi backend hoạt động, Application Load Balancer và Target Group được tạo để public ứng dụng ra Internet thông qua ALB DNS. CloudFront được cấu hình phía trước ALB để cung cấp CDN/HTTPS access. Cuối cùng, CloudWatch Alarm và SNS Email Alert được triển khai để giám sát hệ thống.
+
+### Yêu cầu kỹ thuật
+
+- **Backend Application:** Ứng dụng sử dụng Spring Boot, Thymeleaf và MySQL. File JAR được build từ source code và deploy lên EC2.
+- **Database:** Amazon RDS MySQL chạy trong private subnet, chỉ cho phép EC2 backend truy cập qua port 3306.
+- **File Storage:** Amazon S3 được dùng để lưu CV ứng viên và deployment artifacts. Bucket được bật Block Public Access để tránh public file không mong muốn.
+- **Networking:** VPC được chia thành public subnet và private subnet. ALB nằm trong public subnet, EC2 và RDS nằm trong private subnet. NAT Gateway giúp EC2 private subnet có outbound Internet.
+- **Security:** Security Group được cấu hình theo nguyên tắc chỉ mở port cần thiết. ALB nhận HTTP từ Internet, EC2 chỉ nhận port 8080 từ ALB, RDS chỉ nhận MySQL từ EC2.
+- **Monitoring:** CloudWatch Alarm theo dõi các chỉ số quan trọng và SNS gửi email alert cho admin.
+
+## 5. Lộ trình và mốc triển khai
+
+### Giai đoạn 1: Chuẩn bị ứng dụng
+
+- Kiểm tra source code Spring Boot.
+- Build file JAR từ local.
+- Chuẩn bị file SQL database.
+- Xác định region AWS triển khai là Singapore.
+
+### Giai đoạn 2: Thiết kế và tạo network
+
+- Tạo VPC.
+- Tạo public subnet, private app subnet và private database subnet.
+- Cấu hình Internet Gateway.
+- Cấu hình NAT Gateway.
+- Cấu hình Route Table.
+- Tạo Security Group cho ALB, EC2 và RDS.
+
+### Giai đoạn 3: Triển khai database và backend
+
+- Tạo Amazon RDS MySQL trong private subnet.
+- Tạo EC2 backend trong private subnet.
+- Cài Java và MySQL client trên EC2.
+- Upload JAR và SQL lên S3.
+- Tải artifact từ S3 về EC2.
+- Import database vào RDS.
+- Chạy Spring Boot bằng systemd service.
+
+### Giai đoạn 4: Public ứng dụng
+
+- Tạo Target Group cho EC2 backend.
+- Tạo Application Load Balancer.
+- Cấu hình listener HTTP port 80.
+- Kiểm tra truy cập qua ALB DNS.
+- Tích hợp CloudFront phía trước ALB.
+- Cấu hình CORS để hỗ trợ truy cập qua CloudFront.
+
+### Giai đoạn 5: Monitoring và alert
+
+- Tạo SNS Topic.
+- Tạo email subscription và confirm subscription.
+- Tạo CloudWatch Alarm cho EC2, ALB và RDS.
+- Kiểm tra trạng thái alarm và action gửi email.
+
+### Giai đoạn 6: Kiểm thử hệ thống
+
+- Kiểm thử đăng ký và đăng nhập.
+- Kiểm thử xem danh sách việc làm.
+- Kiểm thử cập nhật hồ sơ ứng viên.
+- Kiểm thử upload CV lên S3.
+- Kiểm thử truy cập qua ALB và CloudFront.
+- Kiểm thử CloudWatch Alarm và SNS notification.
+
+## 6. Ước tính ngân sách
+
+Chi phí thực tế phụ thuộc vào thời gian chạy tài nguyên, region, instance type và lượng traffic. Dự án sử dụng mô hình triển khai nhỏ phục vụ workshop, vì vậy ưu tiên các cấu hình tiết kiệm chi phí như EC2 nhỏ, RDS Single-AZ, S3 dung lượng thấp và CloudWatch alarm cơ bản.
+
+Các thành phần có thể phát sinh chi phí gồm:
+
+- **Amazon EC2:** Chi phí chạy instance backend.
+- **Amazon RDS MySQL:** Chi phí database instance, storage và backup.
+- **Application Load Balancer:** Chi phí theo thời gian chạy và lượng request.
+- **NAT Gateway:** Chi phí theo thời gian chạy và data processed.
+- **Amazon S3:** Chi phí lưu trữ CV, artifact và số lượng request.
+- **Amazon CloudFront:** Chi phí request và data transfer nếu vượt free tier hoặc dùng pay-as-you-go.
+- **Amazon CloudWatch:** Chi phí alarm, logs và metric nếu vượt mức miễn phí.
+- **Amazon SNS:** Chi phí gửi notification, thường rất nhỏ với email alert cơ bản.
+- **Data Transfer:** Chi phí truyền dữ liệu giữa Internet và AWS nếu có traffic đáng kể.
+
+Đối với môi trường workshop, ngân sách nên được kiểm tra bằng AWS Pricing Calculator trước khi triển khai chính thức. Khi hoàn tất demo, cần dọn dẹp các tài nguyên tốn phí như NAT Gateway, ALB, EC2 và RDS để tránh phát sinh chi phí không cần thiết.
+
+## 7. Đánh giá rủi ro
+
+### Ma trận rủi ro
+
+- **EC2 backend bị lỗi hoặc service dừng:** Ảnh hưởng cao, xác suất trung bình. Nếu backend dừng, người dùng không thể truy cập chức năng hệ thống.
+- **RDS không kết nối được:** Ảnh hưởng cao, xác suất trung bình. Nếu RDS Security Group hoặc endpoint sai, backend không thể đọc/ghi dữ liệu.
+- **S3 upload CV thất bại:** Ảnh hưởng trung bình, xác suất trung bình. Nếu IAM Role thiếu quyền `s3:PutObject`, ứng viên không thể upload CV.
+- **CloudFront bị chặn bởi account hoặc policy:** Ảnh hưởng trung bình, xác suất trung bình. Nếu CloudFront account bị giới hạn hoặc cấu hình behavior sai, một số request động có thể lỗi.
+- **Chi phí tăng do NAT Gateway, ALB hoặc RDS chạy lâu:** Ảnh hưởng trung bình, xác suất trung bình.
+- **Email alert không gửi được:** Ảnh hưởng thấp đến trung bình, xác suất trung bình. Nếu SNS subscription chưa confirm, CloudWatch Alarm sẽ không gửi email.
+
+### Chiến lược giảm thiểu
+
+Đối với EC2, ứng dụng được quản lý bằng systemd service để có thể restart tự động khi gặp lỗi. CloudWatch Alarm theo dõi EC2 CPU và ALB Unhealthy Target để phát hiện sự cố backend.
+
+Đối với RDS, database được đặt trong private subnet và chỉ cho phép EC2 backend truy cập qua Security Group. Kết nối được kiểm tra bằng MySQL client trên EC2 trước khi chạy ứng dụng.
+
+Đối với S3, IAM Role được cấp quyền cụ thể cho bucket CV và bucket deploy artifact. Điều này giúp ứng dụng có thể upload CV mà không cần hard-code access key.
+
+Đối với chi phí, tài nguyên được triển khai ở mức nhỏ phục vụ workshop và cần dọn dẹp sau khi hoàn thành. Các dịch vụ như NAT Gateway, ALB, EC2 và RDS nên được kiểm tra thường xuyên trong Billing Dashboard.
+
+### Kế hoạch dự phòng
+
+Nếu CloudFront gặp giới hạn hoặc request upload bị chặn, hệ thống vẫn có thể hoạt động thông qua ALB DNS. Nếu EC2 backend lỗi, có thể kiểm tra log bằng `journalctl` và restart service. Nếu RDS import lỗi, có thể import lại database từ file SQL lưu trong S3 deploy bucket.
+
+## 8. Kết quả kỳ vọng
+
+Sau khi hoàn thành, RecruitBox có thể hoạt động như một hệ thống tuyển dụng trực tuyến triển khai trên AWS. Người dùng có thể truy cập website, đăng ký, đăng nhập, xem danh sách việc làm, cập nhật hồ sơ cá nhân và upload CV. Backend xử lý nghiệp vụ trên EC2, dữ liệu được lưu trong RDS MySQL và file CV được lưu trên S3.
+
+Về kiến trúc, project thể hiện được cách triển khai một web application thực tế trên AWS với đầy đủ các lớp: network, compute, database, storage, load balancing, CDN, security và monitoring. Hệ thống sử dụng nhiều dịch vụ AWS phối hợp với nhau thay vì chỉ chạy ứng dụng trên một server đơn lẻ.
+
+Về giá trị học tập, dự án giúp hiểu cách thiết kế VPC, đặt EC2/RDS trong private subnet, sử dụng NAT Gateway cho outbound access, cấp quyền bằng IAM Role, public ứng dụng bằng ALB, tích hợp CloudFront và xây dựng monitoring bằng CloudWatch/SNS.
+
+Trong tương lai, hệ thống có thể được mở rộng bằng cách thêm Route 53 và ACM cho custom domain HTTPS, Auto Scaling Group cho EC2 backend, CI/CD pipeline với CodePipeline/CodeBuild/CodeDeploy, Cognito cho authentication, hoặc pipeline xử lý CV bằng S3 Event, Lambda/Worker và AI service.

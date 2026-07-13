@@ -7,3 +7,7 @@ pre: " <b> 5.7.1. </b> "
 ---
 
 ### 5.7.1. Tạo S3 bucket lưu trữ CV
+
+![Nhập tên bucket CV](</images/5-Workshop/5.7-Luu-tru-file-voi-Amazon-S3/5.7.1-Tao-S3-bucket-luu-tru-CV/cv%20storage%201.png>)
+![Cấu hình public access và versioning](</images/5-Workshop/5.7-Luu-tru-file-voi-Amazon-S3/5.7.1-Tao-S3-bucket-luu-tru-CV/cv%20storage%202.png>)
+![Bucket CV đã tạo](</images/5-Workshop/5.7-Luu-tru-file-voi-Amazon-S3/5.7.1-Tao-S3-bucket-luu-tru-CV/cv%20storage%203.png>)

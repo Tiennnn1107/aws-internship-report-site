@@ -7,3 +7,5 @@ pre: " <b> 5.9.1. </b> "
 ---
 
 ### 5.9.1. Tạo CloudFront Distribution
+
+![Tạo CloudFront Distribution](</images/5-Workshop/5.9-Tich-hop-CloudFront-CDN/5.9.1-Tao-CloudFront-Distribution/cloudfront.png>)

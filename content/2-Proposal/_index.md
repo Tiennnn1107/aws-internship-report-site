@@ -5,111 +5,209 @@ weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
+# RecruitBox — Cloud-Based Recruitment Platform on AWS
 
-In this section, you need to summarize the contents of the workshop that you **plan** to conduct.
+## An AWS-Based Online Recruitment System
 
-# IoT Weather Platform for Lab Research
-## A Unified AWS Serverless Solution for Real-Time Weather Monitoring
+## 1. Executive Summary
 
-### 1. Executive Summary
-The IoT Weather Platform is designed for the ITea Lab team in Ho Chi Minh City to enhance weather data collection and analysis. It supports up to 5 weather stations, with potential scalability to 10-15, utilizing Raspberry Pi edge devices with ESP32 sensors to transmit data via MQTT. The platform leverages AWS Serverless services to deliver real-time monitoring, predictive analytics, and cost efficiency, with access restricted to 5 lab members via Amazon Cognito.
+RecruitBox is an online recruitment platform deployed on AWS to support the recruitment process among candidates, recruiters, and administrators. The system allows users to register, log in, browse job postings, update personal profiles, upload CV files, and manage recruitment data. The application is built with Spring Boot, Thymeleaf, and MySQL, then deployed on AWS using a practical cloud web application architecture.
 
-### 2. Problem Statement
-### What’s the Problem?
-Current weather stations require manual data collection, becoming unmanageable with multiple units. There is no centralized system for real-time data or analytics, and third-party platforms are costly and overly complex.
+The solution uses Amazon EC2 to run the Spring Boot backend, Amazon RDS for MySQL to store relational data, Amazon S3 to store candidate CVs and deployment artifacts, an Application Load Balancer to route requests to the backend, Amazon CloudFront to provide a CDN and HTTPS access layer in front of the ALB, and Amazon CloudWatch together with Amazon SNS for monitoring and email alerts.
 
-### The Solution
-The platform uses AWS IoT Core to ingest MQTT data, AWS Lambda and API Gateway for processing, Amazon S3 for storage (including a data lake), and AWS Glue Crawlers and ETL jobs to extract, transform, and load data from the S3 data lake to another S3 bucket for analysis. AWS Amplify with Next.js provides the web interface, and Amazon Cognito ensures secure access. Similar to Thingsboard and CoreIoT, users can register new devices and manage connections, though this platform operates on a smaller scale and is designed for private use. Key features include real-time dashboards, trend analysis, and low operational costs.
+The system is deployed inside a dedicated VPC in the Asia Pacific (Singapore) Region. Public subnets contain the ALB and NAT Gateway, while private subnets contain the EC2 backend and RDS database. This design separates public and private components, improves security, and more closely represents a production-style cloud architecture.
 
-### Benefits and Return on Investment
-The solution establishes a foundational resource for lab members to develop a larger IoT platform, serving as a study resource, and provides a data foundation for AI enthusiasts for model training or analysis. It reduces manual reporting for each station via a centralized platform, simplifying management and maintenance, and improves data reliability. Monthly costs are $0.66 USD per the AWS Pricing Calculator, with a 12-month total of $7.92 USD. All IoT equipment costs are covered by the existing weather station setup, eliminating additional development expenses. The break-even period of 6-12 months is achieved through significant time savings from reduced manual work.
+## 2. Problem Statement
 
-### 3. Solution Architecture
-The platform employs a serverless AWS architecture to manage data from 5 Raspberry Pi-based stations, scalable to 15. Data is ingested via AWS IoT Core, stored in an S3 data lake, and processed by AWS Glue Crawlers and ETL jobs to transform and load it into another S3 bucket for analysis. Lambda and API Gateway handle additional processing, while Amplify with Next.js hosts the dashboard, secured by Cognito. The architecture is detailed below:
+### Current Challenges
 
-![IoT Weather Station Architecture](/images/2-Proposal/edge_architecture.jpeg)
+In traditional recruitment systems, candidate information, personal profiles, CV files, and job data are often managed separately through email, manually stored files, or local databases. This approach makes it difficult to scale the system, manage CV files, monitor service health, and provide stable access for users.
 
-![IoT Weather Platform Architecture](/images/2-Proposal/platform_architecture.jpeg)
+In addition, when an application runs only on a local machine or a single public server, it lacks important capabilities such as network isolation, access control, centralized file storage, monitoring, alerting, and future scalability.
+
+### Proposed Solution
+
+RecruitBox is deployed on AWS to address these issues through a clearly structured cloud architecture. The backend application runs on an EC2 instance in a private application subnet. The Amazon RDS for MySQL database is also deployed privately, while the Application Load Balancer is placed in public subnets to receive requests from users.
+
+Amazon S3 is used to store candidate CV files and application deployment artifacts. IAM roles and policies allow EC2 to access S3 securely without hard-coded access keys. Amazon CloudWatch monitors EC2, ALB, and RDS metrics, while Amazon SNS delivers email notifications when alarms are triggered.
+
+Amazon CloudFront is integrated in front of the ALB to provide CDN delivery and an HTTPS endpoint. AWS Systems Manager Session Manager is used to connect to the private EC2 instance without exposing SSH access to the public Internet.
+
+### Benefits and Value
+
+The solution enables the recruitment system to operate in a real cloud environment rather than only on a local machine. Candidate data, job information, and profiles are stored in Amazon RDS for MySQL; CV files are stored separately in Amazon S3; the backend remains in a private subnet; and monitoring and alerting help detect operational problems early.
+
+From a workshop and learning perspective, the project demonstrates how multiple AWS services can be combined to build a practical application across compute, database, storage, networking, security, content delivery, and monitoring layers. It also provides a foundation for future improvements such as CI/CD, Auto Scaling, a custom HTTPS domain, Amazon Cognito, or an automated CV-processing pipeline.
+
+## 3. Solution Architecture
+
+RecruitBox follows a cloud-based web application architecture on AWS. Users access the system through Amazon CloudFront or directly through the Application Load Balancer. The ALB receives HTTP requests and forwards them to the EC2 instance running the Spring Boot backend. The backend handles business logic and authentication, reads and writes relational data in Amazon RDS for MySQL, and uploads CV files to Amazon S3.
+
+The system is deployed within a dedicated VPC. Public subnets contain the Application Load Balancer and NAT Gateway. Private application subnets contain the EC2 backend, while private database subnets contain Amazon RDS for MySQL. Route tables, the Internet Gateway, NAT Gateway, and security groups control communication between components.
+
+Amazon CloudWatch collects metrics from EC2, ALB, and RDS. CloudWatch alarms are configured for high EC2 CPU utilization, ALB target 5XX errors, unhealthy ALB targets, high RDS CPU utilization, and low RDS free storage. When an alarm is triggered, CloudWatch sends a notification to an SNS topic, which then delivers an email alert to the administrator.
+
+### High-Level Architecture Flow
+
+```text
+User
+→ Amazon CloudFront
+→ Application Load Balancer
+→ EC2 Spring Boot Backend
+→ Amazon RDS for MySQL
+
+EC2 Spring Boot Backend
+→ Amazon S3 CV Storage
+
+EC2 / ALB / RDS
+→ CloudWatch Alarm
+→ SNS Topic
+→ Administrator Email
+```
 
 ### AWS Services Used
-- **AWS IoT Core**: Ingests MQTT data from 5 stations, scalable to 15.
-- **AWS Lambda**: Processes data and triggers Glue jobs (two functions).
-- **Amazon API Gateway**: Facilitates web app communication.
-- **Amazon S3**: Stores raw data in a data lake and processed outputs (two buckets).
-- **AWS Glue**: Crawlers catalog data, and ETL jobs transform and load it.
-- **AWS Amplify**: Hosts the Next.js web interface.
-- **Amazon Cognito**: Secures access for lab users.
 
-### Component Design
-- **Edge Devices**: Raspberry Pi collects and filters sensor data, sending it to IoT Core.
-- **Data Ingestion**: AWS IoT Core receives MQTT messages from the edge devices.
-- **Data Storage**: Raw data is stored in an S3 data lake; processed data is stored in another S3 bucket.
-- **Data Processing**: AWS Glue Crawlers catalog the data, and ETL jobs transform it for analysis.
-- **Web Interface**: AWS Amplify hosts a Next.js app for real-time dashboards and analytics.
-- **User Management**: Amazon Cognito manages user access, allowing up to 5 active accounts.
+- **Amazon VPC:** Provides an isolated network for the entire system, including public, private application, and private database subnets.
+- **Public Subnets:** Host the Application Load Balancer and NAT Gateway.
+- **Private Application Subnets:** Host the EC2 backend without exposing the instance directly to the Internet.
+- **Private Database Subnets:** Host Amazon RDS for MySQL and restrict access to the backend.
+- **Internet Gateway:** Provides Internet connectivity for public subnets.
+- **NAT Gateway:** Allows the EC2 instance in a private subnet to access packages, S3, and external services without a public IP address.
+- **Route Tables:** Direct traffic between subnets, the Internet Gateway, and the NAT Gateway.
+- **Security Groups:** Control inbound and outbound traffic among the ALB, EC2, and RDS.
+- **IAM Roles and Policies:** Grant EC2 permission to access S3 without storing access keys in the source code.
+- **Amazon EC2:** Runs the Spring Boot backend as a JAR file managed by a systemd service.
+- **Amazon RDS for MySQL:** Stores relational data such as users, job postings, candidate profiles, applications, and recruitment information.
+- **Amazon S3:** Stores candidate CV files, deployment JAR files, and database backup or import files.
+- **Application Load Balancer:** Provides the public application endpoint and forwards requests to the EC2 backend.
+- **Amazon CloudFront:** Provides a CDN and HTTPS layer in front of the ALB using a `cloudfront.net` endpoint.
+- **AWS Systems Manager Session Manager:** Provides administrative access to the private EC2 instance without opening public SSH.
+- **Amazon CloudWatch:** Monitors EC2, ALB, and RDS metrics.
+- **Amazon SNS:** Sends email alerts when CloudWatch alarms are triggered.
 
-### 4. Technical Implementation
-**Implementation Phases**
-This project has two parts—setting up weather edge stations and building the weather platform—each following 4 phases:
-- Build Theory and Draw Architecture: Research Raspberry Pi setup with ESP32 sensors and design the AWS serverless architecture (1 month pre-internship)
-- Calculate Price and Check Practicality: Use AWS Pricing Calculator to estimate costs and adjust if needed (Month 1).
-- Fix Architecture for Cost or Solution Fit: Tweak the design (e.g., optimize Lambda with Next.js) to stay cost-effective and usable (Month 2).
-- Develop, Test, and Deploy: Code the Raspberry Pi setup, AWS services with CDK/SDK, and Next.js app, then test and release to production (Months 2-3).
+## 4. Technical Implementation
 
-**Technical Requirements**
-- Weather Edge Station: Sensors (temperature, humidity, rainfall, wind speed), a microcontroller (ESP32), and a Raspberry Pi as the edge device. Raspberry Pi runs Raspbian, handles Docker for filtering, and sends 1 MB/day per station via MQTT over Wi-Fi.
-- Weather Platform: Practical knowledge of AWS Amplify (hosting Next.js), Lambda (minimal use due to Next.js), AWS Glue (ETL), S3 (two buckets), IoT Core (gateway and rules), and Cognito (5 users). Use AWS CDK/SDK to code interactions (e.g., IoT Core rules to S3). Next.js reduces Lambda workload for the fullstack web app.
+### Implementation Phases
 
-### 5. Timeline & Milestones
-**Project Timeline**
-- Pre-Internship (Month 0): 1 month for planning and old station review.
-- Internship (Months 1-3): 3 months.
-    - Month 1: Study AWS and upgrade hardware.
-    - Month 2: Design and adjust architecture.
-    - Month 3: Implement, test, and launch.
-- Post-Launch: Up to 1 year for research.
+The project is implemented in several phases, beginning with application analysis and AWS architecture design, followed by network creation, database deployment, backend deployment, public application access, CloudFront integration, and monitoring configuration.
 
-### 6. Budget Estimation
-You can find the budget estimation on the [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01).  
-Or you can download the [Budget Estimation File](../attachments/budget_estimation.pdf).
+The first phase prepares the Spring Boot source code, the MySQL database, and the JAR file built on the local development machine. The AWS network is then created using a VPC, public and private subnets, route tables, an Internet Gateway, and a NAT Gateway.
 
-### Infrastructure Costs
-- AWS Services:
-    - AWS Lambda: $0.00/month (1,000 requests, 512 MB storage).
-    - S3 Standard: $0.15/month (6 GB, 2,100 requests, 1 GB scanned).
-    - Data Transfer: $0.02/month (1 GB inbound, 1 GB outbound).
-    - AWS Amplify: $0.35/month (256 MB, 500 ms requests).
-    - Amazon API Gateway: $0.01/month (2,000 requests).
-    - AWS Glue ETL Jobs: $0.02/month (2 DPUs).
-    - AWS Glue Crawlers: $0.07/month (1 crawler).
-    - MQTT (IoT Core): $0.08/month (5 devices, 45,000 messages).
+Next, Amazon RDS for MySQL is deployed in private database subnets. The EC2 backend is launched in a private application subnet, attached to an IAM role for S3 access, and managed through Systems Manager Session Manager. The Spring Boot application is deployed as `app.jar` and managed by a systemd service.
 
-Total: $0.7/month, $8.40/12 months
+After the backend is operational, a target group and Application Load Balancer are created to expose the application through the ALB DNS name. Amazon CloudFront is configured in front of the ALB to provide CDN and HTTPS access. Finally, CloudWatch alarms and SNS email alerts are configured to monitor the system.
 
-- Hardware: $265 one-time (Raspberry Pi 5 and sensors).
+### Technical Requirements
 
-### 7. Risk Assessment
-#### Risk Matrix
-- Network Outages: Medium impact, medium probability.
-- Sensor Failures: High impact, low probability.
-- Cost Overruns: Medium impact, low probability.
+- **Backend Application:** Spring Boot, Thymeleaf, and MySQL. The JAR file is built locally and deployed to EC2.
+- **Database:** Amazon RDS for MySQL runs in private subnets and accepts connections only from the EC2 backend on port 3306.
+- **File Storage:** Amazon S3 stores CV files and deployment artifacts. Block Public Access remains enabled.
+- **Networking:** The VPC is divided into public and private subnets. The ALB runs publicly, while EC2 and RDS remain private. The NAT Gateway provides outbound Internet connectivity for the EC2 instance.
+- **Security:** Security groups expose only required ports. The ALB accepts HTTP traffic from users, EC2 accepts port 8080 traffic only from the ALB, and RDS accepts MySQL traffic only from the EC2 security group.
+- **Monitoring:** CloudWatch alarms monitor key metrics, and SNS sends email alerts to the administrator.
 
-#### Mitigation Strategies
-- Network: Local storage on Raspberry Pi with Docker.
-- Sensors: Regular checks and spares.
-- Cost: AWS budget alerts and optimization.
+## 5. Roadmap and Implementation Milestones
 
-#### Contingency Plans
-- Revert to manual methods if AWS fails.
-- Use CloudFormation for cost-related rollbacks.
+### Phase 1: Application Preparation
 
-### 8. Expected Outcomes
-#### Technical Improvements: 
-Real-time data and analytics replace manual processes.  
-Scalable to 10-15 stations.
-#### Long-term Value
-1-year data foundation for AI research.  
-Reusable for future projects.
+- Review the Spring Boot source code.
+- Build the JAR file locally.
+- Prepare the SQL database file.
+- Select the Asia Pacific (Singapore) Region for deployment.
+
+### Phase 2: Network Design and Creation
+
+- Create the VPC.
+- Create public, private application, and private database subnets.
+- Configure the Internet Gateway.
+- Configure the NAT Gateway.
+- Configure route tables.
+- Create security groups for ALB, EC2, and RDS.
+
+### Phase 3: Database and Backend Deployment
+
+- Create Amazon RDS for MySQL in private subnets.
+- Launch the EC2 backend in a private subnet.
+- Install Java and the MySQL client on EC2.
+- Upload the JAR and SQL files to S3.
+- Download deployment artifacts from S3 to EC2.
+- Import the database into RDS.
+- Run the Spring Boot application through a systemd service.
+
+### Phase 4: Public Application Access
+
+- Create a target group for the EC2 backend.
+- Create the Application Load Balancer.
+- Configure an HTTP listener on port 80.
+- Test access through the ALB DNS name.
+- Integrate CloudFront in front of the ALB.
+- Configure CORS for access through the CloudFront domain.
+
+### Phase 5: Monitoring and Alerting
+
+- Create an SNS topic.
+- Create and confirm an email subscription.
+- Create CloudWatch alarms for EC2, ALB, and RDS.
+- Verify alarm states and SNS actions.
+
+### Phase 6: System Testing
+
+- Test user registration and login.
+- Test job browsing.
+- Test candidate profile updates.
+- Test CV upload to S3.
+- Test access through ALB and CloudFront.
+- Test CloudWatch alarms and SNS notifications.
+
+## 6. Budget Estimate
+
+Actual costs depend on resource runtime, Region, instance type, traffic, and storage usage. The project uses a small workshop-oriented deployment and prioritizes cost-efficient configurations such as a small EC2 instance, a Single-AZ RDS instance, limited S3 storage, and basic CloudWatch alarms.
+
+Potential cost components include:
+
+- **Amazon EC2:** Backend instance runtime.
+- **Amazon RDS for MySQL:** Database instance, storage, and backups.
+- **Application Load Balancer:** Hourly usage and processed traffic.
+- **NAT Gateway:** Hourly usage and processed data.
+- **Amazon S3:** Storage and request costs for CV files and deployment artifacts.
+- **Amazon CloudFront:** Request and data-transfer costs when usage exceeds free limits or uses pay-as-you-go pricing.
+- **Amazon CloudWatch:** Alarm, log, and custom metric costs if usage exceeds free allocations.
+- **Amazon SNS:** Notification delivery costs, which are generally minimal for basic email alerts.
+- **Data Transfer:** Internet and inter-service data transfer where applicable.
+
+The infrastructure budget should be reviewed using AWS Pricing Calculator before production deployment. After the workshop or demonstration, cost-generating resources such as NAT Gateway, ALB, EC2, and RDS should be stopped or removed to avoid unnecessary charges.
+
+## 7. Risk Assessment
+
+### Risk Matrix
+
+- **EC2 backend failure or stopped service:** High impact, medium probability. Users cannot access application functions when the backend is unavailable.
+- **RDS connectivity failure:** High impact, medium probability. Incorrect endpoints or security-group rules prevent the backend from reading or writing data.
+- **S3 CV upload failure:** Medium impact, medium probability. Missing `s3:PutObject` permissions prevent candidates from uploading CV files.
+- **CloudFront account or policy restrictions:** Medium impact, medium probability. Incorrect behavior settings or account limitations may block dynamic requests.
+- **Unexpected NAT Gateway, ALB, or RDS costs:** Medium impact, medium probability.
+- **SNS email alerts not delivered:** Low-to-medium impact, medium probability. Notifications are not delivered when the email subscription has not been confirmed.
+
+### Mitigation Strategies
+
+The Spring Boot application is managed by systemd so it can restart automatically after a failure. CloudWatch monitors EC2 CPU utilization and unhealthy ALB targets to detect backend issues.
+
+Amazon RDS is deployed in private subnets and is accessible only from the EC2 backend through security-group rules. Connectivity is validated using the MySQL client on EC2 before the application is started.
+
+IAM roles grant specific access to the CV and deployment S3 buckets. This enables secure file upload without hard-coded credentials.
+
+To control costs, resources are sized for workshop use and should be reviewed regularly in AWS Billing. NAT Gateway, ALB, EC2, and RDS should be removed or stopped after the project is completed.
+
+### Contingency Plan
+
+If CloudFront is unavailable or blocks a request, the application can remain accessible through the ALB DNS name. If the EC2 backend fails, administrators can inspect logs with `journalctl` and restart the systemd service. If the RDS import fails, the database can be restored by re-importing the SQL file stored in the S3 deployment bucket.
+
+## 8. Expected Outcomes
+
+After implementation, RecruitBox will operate as an online recruitment platform hosted on AWS. Users will be able to access the website, register, log in, browse job postings, update personal profiles, and upload CV files. The backend will process business logic on EC2, relational data will be stored in Amazon RDS for MySQL, and CV files will be stored in Amazon S3.
+
+From an architectural perspective, the project demonstrates the deployment of a practical web application with networking, compute, database, storage, load balancing, content delivery, security, and monitoring layers. Multiple AWS services work together instead of running the application on a single isolated server.
+
+From a learning perspective, the project provides practical experience in designing a VPC, deploying EC2 and RDS in private subnets, using a NAT Gateway for outbound connectivity, granting access through IAM roles, exposing an application through an ALB, integrating CloudFront, and implementing monitoring through CloudWatch and SNS.
+
+Future improvements may include Route 53 and AWS Certificate Manager for a custom HTTPS domain, an Auto Scaling Group for the EC2 backend, a CI/CD pipeline using CodePipeline, CodeBuild, and CodeDeploy, Amazon Cognito for identity management, or an automated CV-processing pipeline using S3 events, Lambda or a worker service, and an AI service.

@@ -1,126 +1,107 @@
 ---
-title: "Event 1"
-date: 2024-01-01
+title: "Mindset, Self-Learning and AI in Software Development"
+date: 2025-08-13
 weight: 1
 chapter: false
 pre: " <b> 4.1. </b> "
 ---
 
 {{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
+⚠️ **Note:** The content below is for reference only. Please do not copy it verbatim into your report.
 {{% /notice %}}
 
-# Summary Report: “GenAI-powered App-DB Modernization workshop”
+# Event Reflection
 
-### Event Objectives
+This event shared practical knowledge about professional mindset, self-learning, time management, and the use of AI in software development.
 
-- Share best practices in modern application design
-- Introduce Domain-Driven Design (DDD) and event-driven architecture
-- Provide guidance on selecting the right compute services
-- Present AI tools to support the development lifecycle
+## 1. Event objectives
 
-### Speakers
+The program focused on:
 
-- **Jignesh Shah** – Director, Open Source Databases
-- **Erica Liu** – Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** – Assc. Specialist SA, Serverless Amazon Web Services
+- Building a positive mindset for learning and career development.
+- Improving self-learning and time-management skills.
+- Introducing AI Agents in the software-development process.
+- Explaining basic and advanced Prompt Engineering principles.
+- Presenting Proptimizer, an AWS-based prompt-optimization application.
+- Encouraging participants to apply AI proactively in study and work.
 
-### Key Highlights
+## 2. Speakers
 
-#### Identifying the drawbacks of legacy application architecture
+- **Khang Nguyen:** Mindset and personal development.
+- **Long Hoang:** Self-learning and time-management methods.
+- **Nguyen Phuong Thao:** An AI Agent model for software development.
+- **Thinh Nguyen:** Self-learning, Prompt Engineering, and Proptimizer.
 
-- Long product release cycles → Lost revenue/missed opportunities  
-- Inefficient operations → Reduced productivity, higher costs  
-- Non-compliance with security regulations → Security breaches, loss of reputation  
+## 3. Main topics
 
-#### Transitioning to modern application architecture – Microservices
+### 3.1. Mindset in a professional environment
 
-Migrating to a modular system — each function is an **independent service** communicating via **events**, built on three core pillars:
+Technical expertise should be combined with adaptability, teamwork, clear communication, and responsibility. Participants were encouraged to take initiative, accept feedback, report progress, propose solutions, and respect processes and deadlines.
 
-- **Queue Management**: Handle asynchronous tasks  
-- **Caching Strategy**: Optimize performance  
-- **Message Handling**: Flexible inter-service communication  
+I learned that an individual's work can affect the progress of the entire team. Communication, collaboration, and accountability are therefore as important as technical ability.
 
-#### Domain-Driven Design (DDD)
+### 3.2. Self-learning and time management
 
-- **Four-step method**: Identify domain events → arrange timeline → identify actors → define bounded contexts  
-- **Bookstore case study**: Demonstrates real-world DDD application  
-- **Context mapping**: 7 patterns for integrating bounded contexts  
+An effective learning process starts with clear goals, reliable resources, small tasks, and a balance between theory and practice. Time management can be improved by prioritizing tasks, focusing on one task per session, reducing distractions, tracking progress, and taking appropriate breaks.
 
-#### Event-Driven Architecture
+I realized that self-learning only becomes effective when it is supported by planning and discipline rather than passive consumption of materials.
 
-- **3 integration patterns**: Publish/Subscribe, Point-to-point, Streaming  
-- **Benefits**: Loose coupling, scalability, resilience  
-- **Sync vs async comparison**: Understanding the trade-offs  
+### 3.3. AI Agents for software development
 
-#### Compute Evolution
+The presented model assigns specialized roles to AI Agents, including requirements analysis, planning, architecture design, frontend and backend development, database management, testing, code review, documentation, deployment, and operations.
 
-- **Shared Responsibility Model**: EC2 → ECS → Fargate → Lambda  
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value  
-- **Functions vs Containers**: Criteria for appropriate choice  
+Agents can cooperate from analysis to product creation. Human review remains essential for quality, security, technical assessment, and final decisions.
 
-#### Amazon Q Developer
+### 3.4. Prompt Engineering
 
-- **SDLC automation**: From planning to maintenance  
-- **Code transformation**: Java upgrade, .NET modernization  
-- **AWS Transform agents**: VMware, Mainframe, .NET migration  
+Prompt Engineering is the practice of writing clear instructions for language models. An effective prompt may include a role, task, context, input data, output format, examples, and constraints.
 
-### Key Takeaways
+The event introduced Role Prompting, Chain-of-Thought, Self-Consistency, Tree-of-Thoughts, and Retrieval-Augmented Generation. These techniques should be selected according to the task, while prompts should remain clear, relevant, and easy to evaluate.
 
-#### Design Mindset
+### 3.5. Tokens and AI costs
 
-- **Business-first approach**: Always start from the business domain, not the technology  
-- **Ubiquitous language**: Importance of a shared vocabulary between business and tech teams  
-- **Bounded contexts**: Identifying and managing complexity in large systems  
+Model costs commonly depend on input tokens, output tokens, model type, request frequency, and conversation history. Prompts should contain enough information to be useful while avoiding unnecessary repetition.
 
-#### Technical Architecture
+### 3.6. The Proptimizer project
 
-- **Event storming technique**: Practical method for modeling business processes  
-- Use **event-driven communication** instead of synchronous calls  
-- **Integration patterns**: When to use sync, async, pub/sub, streaming  
-- **Compute spectrum**: Criteria for choosing between VM, containers, and serverless  
+Proptimizer helps users optimize prompts and interact with AI. Its workflow is:
 
-#### Modernization Strategy
+1. Receive the initial prompt.
+2. Analyze the goal and context.
+3. Add missing components.
+4. Generate a clearer and more structured prompt.
+5. Allow continued interaction with the AI.
+6. Store prompt and optimization history.
 
-- **Phased approach**: No rushing — follow a clear roadmap  
-- **7Rs framework**: Multiple modernization paths depending on the application  
-- **ROI measurement**: Cost reduction + business agility  
+Its AWS Serverless architecture uses Amazon CloudFront, Amazon S3, Amazon Cognito, Amazon API Gateway, AWS Lambda, Amazon Bedrock, Amazon DynamoDB, and Amazon CloudWatch. This reduces server-management work, supports automatic scaling, and suits changing traffic.
 
-### Applying to Work
+## 4. Key lessons learned
 
-- **Apply DDD** to current projects: Event storming sessions with business teams  
-- **Refactor microservices**: Use bounded contexts to define service boundaries  
-- **Implement event-driven patterns**: Replace some sync calls with async messaging  
-- **Adopt serverless**: Pilot AWS Lambda for suitable use cases  
-- **Try Amazon Q Developer**: Integrate into the dev workflow to boost productivity  
+- Mindset, discipline, and adaptability are foundations for learning technology.
+- Effective time management is based on priorities, not simply task volume.
+- AI Agents can automate many stages of software development.
+- Clear prompts improve output quality and reduce editing time.
+- AI is an assisting tool; people remain responsible for review and decisions.
+- AWS Serverless simplifies deployment and scaling for AI applications.
 
-### Event Experience
+## 5. Applying the knowledge
 
-Attending the **“GenAI-powered App-DB Modernization”** workshop was extremely valuable, giving me a comprehensive view of modernizing applications and databases using advanced methods and tools. Key experiences included:
+After the event, I can:
 
-#### Learning from highly skilled speakers
-- Experts from AWS and major tech organizations shared **best practices** in modern application design.  
-- Through real-world case studies, I gained a deeper understanding of applying **DDD** and **Event-Driven Architecture** to large projects.  
+- Create weekly learning plans with measurable goals.
+- Break projects into smaller tasks and track progress.
+- Use AI for research, documentation, and code review.
+- Write more structured prompts.
+- Experiment with multiple AI Agents in a small software project.
+- Monitor token usage to control costs.
+- Review all AI-generated content before using it.
 
-#### Hands-on technical exposure
-- Participating in **event storming** sessions helped me visualize how to **model business processes** into domain events.  
-- Learned how to **split microservices** and define **bounded contexts** to manage large-system complexity.  
-- Understood trade-offs between **synchronous and asynchronous communication** and integration patterns like **pub/sub, point-to-point, streaming**.  
+## 6. Experience and event photos
 
-#### Leveraging modern tools
-- Explored **Amazon Q Developer**, an AI tool for SDLC support from planning to maintenance.  
-- Learned to **automate code transformation** and pilot serverless with **AWS Lambda** to improve productivity.  
+The event connected mindset, self-learning, time management, and AI technology with practical situations. It also helped me understand how an idea can become a real product through Prompt Engineering and AWS Serverless architecture.
 
-#### Networking and discussions
-- The workshop offered opportunities to exchange ideas with experts, peers, and business teams, enhancing the **ubiquitous language** between business and tech.  
-- Real-world examples reinforced the importance of the **business-first approach** rather than focusing solely on technology.  
+> Add photos of the stage, speakers, presentations, demonstration, and participants here.
 
-#### Lessons learned
-- Applying DDD and event-driven patterns reduces **coupling** while improving **scalability** and **resilience**.  
-- Modernization requires a **phased approach** with **ROI measurement**; rushing the process can be risky.  
-- AI tools like Amazon Q Developer can significantly **boost productivity** when integrated into the current workflow.  
+## 7. Conclusion
 
-#### Some event photos
-*Add your event photos here*  
-
-> Overall, the event not only provided technical knowledge but also helped me reshape my thinking about application design, system modernization, and cross-team collaboration.
+The event provided practical knowledge about AI Agents and Prompt Engineering as well as professional attitude, self-learning, and personal development. These lessons can be applied to future learning activities, projects, and career development.

@@ -1,57 +1,36 @@
 ---
 title: "Week 10 Worklog"
-date: 2024-01-01
-weight: 2
+date: 2026-06-19
+weight: 10
 chapter: false
 pre: " <b> 1.10. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
 
+{{% notice warning %}}
+ **Note:** The following content records the learning and implementation activities completed during the week and is intended for the personal worklog report.
+{{% /notice %}}
 
 ### Week 10 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+- Expose the backend through an Application Load Balancer with health checks.
+- Place CloudFront in front of the ALB with settings suitable for a dynamic application.
+- Resolve CORS and forwarded-header issues and test features through CloudFront.
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Tasks carried out this week:
 
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| 06/19/2026 | Created `recruit-tg` with EC2 instance targets on port `8080`, configured health checks, and registered the backend. | 06/19/2026 | 06/19/2026 | Target Group health records |
+| 06/20/2026 | Created `recruit-alb` in two public subnets and configured HTTP listener `80` to forward to `recruit-tg`. | 06/20/2026 | 06/20/2026 | ALB configuration |
+| 06/21/2026 | Confirmed the target was `Healthy` and accessed the application through the ALB DNS name. | 06/21/2026 | 06/21/2026 | ALB access verification |
+| 06/22/2026 | Created CloudFront in the separate AWS account being used, set the public ALB DNS as an `HTTP only` origin, and redirected viewers from HTTP to HTTPS. | 06/22/2026 | 06/22/2026 | CloudFront distribution records |
+| 06/23/2026 | Allowed GET, HEAD, OPTIONS, PUT, POST, PATCH, and DELETE and selected `CachingDisabled` with origin request policy `AllViewer`. | 06/23/2026 | 06/23/2026 | CloudFront behavior configuration |
+| 06/24/2026 – 06/25/2026 | Resolved CORS and login HTTP 403 `Invalid CORS request`, set `server.forward-headers-strategy=framework`, created invalidation `/*`, and tested features.<br>&emsp;Recorded the possible CloudFront Free Plan limitation on multipart uploads. | 06/24/2026 | 06/25/2026 | Application logs and CloudFront tests |
 
 ### Week 10 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+- Created `recruit-tg` and `recruit-alb` and confirmed that the backend target was `Healthy`.
+- Accessed the application successfully through the ALB DNS name.
+- Configured CloudFront in the account being used to forward requests to the public ALB.
+- Set methods, cache policy, and origin request policy for dynamic application traffic.
+- Resolved CORS and forwarded-header issues, invalidated the cache, and documented the multipart-plan limitation.

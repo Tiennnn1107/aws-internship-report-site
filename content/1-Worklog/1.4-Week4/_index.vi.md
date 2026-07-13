@@ -1,59 +1,36 @@
 ---
 title: "Worklog Tuần 4"
-date: 2024-01-01
-weight: 1
+date: 2026-05-08
+weight: 4
 chapter: false
 pre: " <b> 1.4. </b> "
 ---
+
 {{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
+ **Lưu ý:** Nội dung dưới đây ghi lại quá trình học tập và thực hành trong tuần. Thông tin được sử dụng cho mục đích báo cáo worklog cá nhân.
 {{% /notice %}}
 
+### Mục tiêu Tuần 4:
 
-### Mục tiêu tuần 4:
+- Triển khai website tĩnh nhiều file trên Amazon S3.
+- Thực hành Versioning, Cross-Region Replication và quản lý quyền truy cập object.
+- Tạo CloudFormation stack và tìm hiểu quy trình AWS Backup, SNS notification.
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+### Các công việc thực hiện trong tuần:
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Ngày | Công việc | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo |
+| --- | --- | --- | --- | --- |
+| 08/05/2026 | Tạo bucket `aws-first-cloud-journey-123456` tại `ap-southeast-1`; upload website gồm `index.html`, `error.html` và tài nguyên tĩnh. | 08/05/2026 | 08/05/2026 | AWS S3 console records |
+| 09/05/2026 | Bật Static Website Hosting; điều chỉnh Block Public Access, tìm hiểu Object Ownership và ACL, rồi public object cần kiểm tra. | 09/05/2026 | 09/05/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 10/05/2026 | Kiểm tra website endpoint, phân tích lỗi 403 và xác minh `index.html`/`error.html`; tính tổng dung lượng object. | 10/05/2026 | 10/05/2026 | S3 website verification results |
+| 11/05/2026 | Bật S3 Versioning và thực hành Cross-Region Replication từ `ap-southeast-1` sang `us-east-1`. | 11/05/2026 | 11/05/2026 | S3 replication configuration |
+| 12/05/2026 | Lưu template hoặc artifact CloudFormation trên S3 và tạo CloudFormation stack. | 12/05/2026 | 12/05/2026 | CloudFormation stack events |
+| 13/05/2026 – 14/05/2026 | Tìm hiểu Backup vault, Backup plan, Backup rule; cấu hình SNS notification và xác nhận email khi có yêu cầu. | 13/05/2026 | 14/05/2026 | AWS Backup and SNS console records |
 
+### Kết quả đạt được Tuần 4:
 
-### Kết quả đạt được tuần 4:
-
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+- Xuất bản và kiểm tra được website tĩnh nhiều file trên S3.
+- Hiểu ảnh hưởng của Block Public Access, Object Ownership, ACL và cách xử lý lỗi 403.
+- Bật Versioning, kiểm tra dung lượng object và cấu hình Cross-Region Replication.
+- Tạo được CloudFormation stack từ template/artifact lưu trên S3.
+- Nắm quy trình cấu hình Backup vault, Backup plan, Backup rule và SNS notification.

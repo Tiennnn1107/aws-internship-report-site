@@ -1,59 +1,35 @@
 ---
 title: "Worklog Tuần 5"
-date: 2024-01-01
-weight: 1
+date: 2026-05-15
+weight: 5
 chapter: false
 pre: " <b> 1.5. </b> "
 ---
+
 {{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
+ **Lưu ý:** Nội dung dưới đây ghi lại quá trình học tập và thực hành trong tuần. Thông tin được sử dụng cho mục đích báo cáo worklog cá nhân.
 {{% /notice %}}
 
+### Mục tiêu Tuần 5:
 
-### Mục tiêu tuần 5:
+- Tổng hợp kiến thức từ các buổi chia sẻ cộng đồng AWS mà không sao chép nội dung slide.
+- Liên hệ các chủ đề kỹ thuật với khả năng thiết kế và vận hành hệ thống.
+- Rút ra bài học về tư duy làm việc, tự học và quản lý thời gian.
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+### Các công việc thực hiện trong tuần:
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Ngày | Công việc | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo |
+| --- | --- | --- | --- | --- |
+| 15/05/2026 | Tham gia hoặc xem lại tài liệu sự kiện; ghi chú nội dung theo từng diễn giả và chủ đề. | 15/05/2026 | 15/05/2026 | Tài liệu sự kiện đã được cung cấp |
+| 16/05/2026 | Tổng hợp CloudFront fundamentals và các nguyên tắc high availability trên AWS. | 16/05/2026 | 16/05/2026 | Ghi chú cá nhân từ sự kiện |
+| 17/05/2026 | Tìm hiểu context engineering, tính non-deterministic của LLM và cách đánh giá đầu ra. | 17/05/2026 | 17/05/2026 | Ghi chú cá nhân từ sự kiện |
+| 18/05/2026 | Ghi nhận cách GenAI hỗ trợ hiện đại hóa ứng dụng và database ở mức định hướng, không xem là phần đã triển khai. | 18/05/2026 | 18/05/2026 | Tài liệu sự kiện đã được cung cấp |
+| 19/05/2026 | Tổng hợp bài học về mindset, giao tiếp, tự học và quản lý thời gian trong môi trường công việc. | 19/05/2026 | 19/05/2026 | Ghi chú cá nhân từ sự kiện |
+| 20/05/2026 – 21/05/2026 | Biên tập nội dung Event Participated bằng lời văn cá nhân; rà soát nguồn và tránh sao chép nguyên văn slide. | 20/05/2026 | 21/05/2026 | Nội dung Event Participated trong repository |
 
+### Kết quả đạt được Tuần 5:
 
-### Kết quả đạt được tuần 5:
-
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+- Củng cố kiến thức nền tảng về CloudFront và tính sẵn sàng cao.
+- Hiểu ở mức khái niệm về context engineering, tính không xác định của LLM và hướng hiện đại hóa bằng GenAI.
+- Rút ra phương pháp ghi chú, tự học và quản lý thời gian phù hợp hơn.
+- Hoàn thiện phần Event Participated dựa trên nội dung đã tiếp nhận và diễn giải lại.

@@ -1,59 +1,36 @@
 ---
 title: "Worklog Tuần 9"
-date: 2024-01-01
-weight: 1
+date: 2026-06-12
+weight: 9
 chapter: false
 pre: " <b> 1.9. </b> "
 ---
+
 {{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
+ **Lưu ý:** Nội dung dưới đây ghi lại quá trình học tập và thực hành trong tuần. Thông tin được sử dụng cho mục đích báo cáo worklog cá nhân.
 {{% /notice %}}
 
+### Mục tiêu Tuần 9:
 
-### Mục tiêu tuần 9:
+- Thiết lập S3 riêng tư cho CV, artifact triển khai và bản sao lưu database khi cần.
+- Cấp quyền S3 tối thiểu cho EC2 Role và triển khai JAR từ S3.
+- Tích hợp upload CV bằng AWS SDK for Java và xử lý lỗi quyền truy cập.
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+### Các công việc thực hiện trong tuần:
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Ngày | Công việc | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo |
+| --- | --- | --- | --- | --- |
+| 12/06/2026 | Tạo `recruitpro-cv-storage-tien`, `recruitpro-deploy-artifacts-tien` và ghi nhận `recruitpro-db-backup-tien` cho bản sao lưu database. | 12/06/2026 | 12/06/2026 | S3 bucket records |
+| 13/06/2026 | Bật Block Public Access và encryption; xác minh bucket CV không cho truy cập công khai. | 13/06/2026 | 13/06/2026 | S3 security configuration |
+| 14/06/2026 | Tạo IAM Policy giới hạn `s3:ListBucket`, `s3:GetObject`, `s3:PutObject`, `s3:DeleteObject`; gắn vào EC2 Role. | 14/06/2026 | 14/06/2026 | IAM policy records |
+| 15/06/2026 | Upload JAR vào bucket artifact; để EC2 tải JAR từ S3 và triển khai lại service. | 15/06/2026 | 15/06/2026 | S3 and EC2 deployment logs |
+| 16/06/2026 – 17/06/2026 | Cấu hình Spring Boot dùng AWS SDK for Java để upload CV vào prefix `cv/`; tạo presigned URL hoặc API xem file. | 16/06/2026 | 17/06/2026 | RecruitPro source and application logs |
+| 18/06/2026 | Xử lý lỗi 403 `HeadObject` và `AccessDenied`; kiểm tra object CV đã xuất hiện trong S3. | 18/06/2026 | 18/06/2026 | S3 object and error verification |
 
+### Kết quả đạt được Tuần 9:
 
-### Kết quả đạt được tuần 9:
-
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+- Tạo đúng các bucket CV, deploy artifact và backup database theo kế hoạch.
+- Giữ bucket CV riêng tư bằng Block Public Access và encryption.
+- Áp dụng quyền S3 tối thiểu cho EC2 Role và triển khai JAR từ bucket artifact.
+- Upload CV vào prefix `cv/` và cung cấp quyền xem có thời hạn qua presigned URL hoặc API.
+- Khắc phục lỗi `HeadObject`/`AccessDenied` bằng cách rà soát resource ARN, action và IAM Role.

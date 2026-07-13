@@ -1,59 +1,36 @@
 ---
 title: "Worklog Tuần 11"
-date: 2024-01-01
-weight: 2
+date: 2026-06-26
+weight: 11
 chapter: false
 pre: " <b> 1.11. </b> "
 ---
+
 {{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
+ **Lưu ý:** Nội dung dưới đây ghi lại quá trình học tập và thực hành trong tuần. Thông tin được sử dụng cho mục đích báo cáo worklog cá nhân.
 {{% /notice %}}
 
+### Mục tiêu Tuần 11:
 
-### Mục tiêu tuần 11:
+- Thiết lập kênh cảnh báo email bằng SNS.
+- Tạo CloudWatch Alarm cho EC2, ALB và RDS theo các metric vận hành chính.
+- Kiểm tra trạng thái và luồng cảnh báo từ resource đến email quản trị.
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+### Các công việc thực hiện trong tuần:
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Ngày | Công việc | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo |
+| --- | --- | --- | --- | --- |
+| 26/06/2026 | Tạo SNS topic `recruitpro-alert-topic`, tạo email subscription và xác nhận subscription trong email. | 26/06/2026 | 26/06/2026 | SNS topic and subscription records |
+| 27/06/2026 | Tạo alarm `RecruitPro-EC2-High-CPU` và `RecruitPro-ALB-Target-5XX`; cấu hình alarm action gửi SNS. | 27/06/2026 | 27/06/2026 | CloudWatch Alarm records |
+| 28/06/2026 | Tạo alarm `RecruitPro-ALB-Unhealthy-Target`; kiểm tra metric và target health liên quan. | 28/06/2026 | 28/06/2026 | CloudWatch and ALB metrics |
+| 29/06/2026 | Tạo `RecruitPro-RDS-High-CPU` và `RecruitPro-RDS-Low-Storage`; gắn action đến SNS topic. | 29/06/2026 | 29/06/2026 | CloudWatch and RDS metrics |
+| 30/06/2026 | Theo dõi các trạng thái `OK`, `In alarm`, `Insufficient data`; kiểm tra một lần alarm ALB 5XX đã được kích hoạt. | 30/06/2026 | 30/06/2026 | Alarm history and notification email |
+| 01/07/2026 – 02/07/2026 | Chụp danh sách alarm và `Actions enabled`; mô tả luồng EC2/ALB/RDS → CloudWatch → SNS → Admin Email. | 01/07/2026 | 02/07/2026 | Monitoring screenshots and personal notes |
 
+### Kết quả đạt được Tuần 11:
 
-### Kết quả đạt được tuần 11:
-
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+- Tạo và xác nhận email subscription cho `recruitpro-alert-topic`.
+- Hoàn thành năm CloudWatch Alarm đúng tên cho EC2, ALB và RDS.
+- Kết nối alarm action tới SNS và theo dõi được ba trạng thái alarm.
+- Xác minh alarm ALB 5XX có thể chuyển sang `In alarm` và gửi thông báo.
+- Hoàn thiện bằng chứng monitoring mà không sử dụng SES vì SES chưa được triển khai.

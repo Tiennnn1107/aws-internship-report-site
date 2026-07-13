@@ -1,57 +1,34 @@
 ---
 title: "Week 2 Worklog"
-date: 2024-01-01
-weight: 1
+date: 2026-04-24
+weight: 2
 chapter: false
 pre: " <b> 1.2. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
 
+{{% notice warning %}}
+ **Note:** The following content records the learning and implementation activities completed during the week and is intended for the personal worklog report.
+{{% /notice %}}
 
 ### Week 2 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+- Understand Amazon VPC components and routing behavior.
+- Build a demo VPC with public and private subnets, an Internet Gateway, and route tables.
+- Differentiate Security Groups from Network ACLs and validate EC2 connectivity.
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Tasks carried out this week:
 
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| 04/24/2026 | Studied Amazon VPC, CIDR planning, and the difference between public and private subnets. | 04/24/2026 | 04/24/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 04/25/2026 | Created `VPC-DEMO` with CIDR `10.10.0.0/16`, then created one public and one private subnet. | 04/25/2026 | 04/25/2026 | AWS Management Console |
+| 04/26/2026 – 04/27/2026 | Created and attached an Internet Gateway and configured a public route table with a default Internet route. | 04/26/2026 | 04/27/2026 | AWS VPC configuration |
+| 04/28/2026 | Compared stateful Security Group rules with stateless Network ACL rules and reviewed inbound and outbound traffic. | 04/28/2026 | 04/28/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 04/29/2026 – 04/30/2026 | Launched EC2 in `VPC-DEMO` and checked routes, subnet placement, public IP assignment, and Internet access. | 04/29/2026 | 04/30/2026 | EC2 and VPC verification results |
 
 ### Week 2 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+- Built `VPC-DEMO` and divided its address space into public and private subnets.
+- Configured an Internet Gateway and a route table for the public subnet.
+- Explained the differences among public subnets, private subnets, Security Groups, and Network ACLs.
+- Validated the network path used by an EC2 instance in the VPC.

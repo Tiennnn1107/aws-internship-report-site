@@ -67,3 +67,5 @@ Luồng vận hành mới gồm:
 Chuyển từ EC2 sang EKS Auto Mode không chỉ là đổi nền tảng, mà còn là cơ hội nâng cấp tư duy vận hành. Với Kiro CLI và MCP Servers, hành trình di chuyển trở nên dễ đoán hơn và ít rủi ro hơn. Nếu bạn đang containerize hệ thống cũ, đây là giải pháp đáng thử.
 
 Link gốc: https://aws.amazon.com/vi/blogs/containers/migrate-amazon-ec2-to-eks-auto-mode-using-kiro-cli-and-mcp-servers/
+
+<p class="blog-community-link"><span>Thảo luận trong cộng đồng:</span><a href="https://www.facebook.com/groups/awsstudygroupfcj/permalink/2209780886453538/">Xem bài viết trên Facebook</a></p>

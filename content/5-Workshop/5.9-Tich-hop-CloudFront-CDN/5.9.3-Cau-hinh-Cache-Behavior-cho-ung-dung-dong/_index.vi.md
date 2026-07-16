@@ -1,15 +1,15 @@
 ---
-title: "Cấu hình Cache Behavior cho ứng dụng động"
+title: "Chọn Application Load Balancer làm Origin"
 date: 2026-07-10
 weight: 3
 chapter: false
 pre: " <b> 5.9.3. </b> "
 ---
 
-1. Với `/api/*`, chọn allowed methods gồm API cần dùng, cache policy `CachingDisabled` và origin request policy chuyển các header/query/cookie cần thiết.
-2. Với tài nguyên tĩnh, dùng managed policy `CachingOptimized`.
-3. Không forward toàn bộ cookie/header nếu ứng dụng không cần vì làm giảm cache hit ratio.
+## 5.9.3. Chọn Application Load Balancer làm Origin
 
-![Cấu hình cache behavior](</images/5-Workshop/5.9-Tich-hop-CloudFront-CDN/5.9.3-Cau-hinh-Cache-Behavior-cho-ung-dung-dong/cloudfront%203.png>)
+Tại bước **Specify origin**, chọn loại origin là **Elastic Load Balancer** vì ứng dụng RecruitBox đang được phục vụ thông qua Application Load Balancer.
 
-Kiểm tra `X-Cache`: API động thường `Miss from cloudfront`; static asset request lần sau nên `Hit from cloudfront`. Theo dõi `CacheHitRate` và `OriginLatency`.
+![Chọn Application Load Balancer làm origin](</images/5-Workshop/5.9-Tich-hop-CloudFront-CDN/5.9.3-Cau-hinh-Cache-Behavior-cho-ung-dung-dong/cloudfront%203.png>)
+
+Trong trường **Elastic Load Balancing origin**, chọn ALB có DNS `recruit-alb-1002681411.ap-southeast-1.elb.amazonaws.com`. Trường **Origin path** không cần nhập vì ứng dụng được phục vụ từ đường dẫn gốc của ALB. Với cấu hình này, CloudFront tiếp nhận request từ người dùng rồi chuyển tiếp request về ALB để phân phối đến backend.

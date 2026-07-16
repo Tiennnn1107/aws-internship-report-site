@@ -66,3 +66,5 @@ The new workflow becomes:
 Migrating from EC2 to EKS Auto Mode is more than a platform change—it is an opportunity to modernize operation and reduce toil. With Kiro CLI and MCP Servers, the migration path becomes more predictable and easier to validate. If your team is ready to containerize a legacy workload, this approach can save both time and operational complexity.
 
 For details, see the original article: https://aws.amazon.com/vi/blogs/containers/migrate-amazon-ec2-to-eks-auto-mode-using-kiro-cli-and-mcp-servers/.
+
+<p class="blog-community-link"><span>Community discussion:</span><a href="https://www.facebook.com/groups/awsstudygroupfcj/permalink/2209780886453538/">View the post on Facebook</a></p>

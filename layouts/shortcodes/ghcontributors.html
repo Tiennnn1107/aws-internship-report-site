@@ -22,7 +22,7 @@
 <div class="ghContributors">
   {{ $url := .Get 0 }}
   {{ $res := resources.GetRemote $url }}
-  
+
   {{ if $res }}
     {{ range ($res.Content | transform.Unmarshal) }}
     <div>

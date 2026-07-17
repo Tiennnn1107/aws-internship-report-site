@@ -16,8 +16,7 @@ CloudFront, ALB target, EC2 service và RDS đều healthy; dùng dữ liệu gi
 |---|---|---|---|
 | Đăng ký/đăng nhập | Tạo tài khoản rồi đăng nhập | HTTP 2xx, token/session hợp lệ | Screenshot + application log |
 | Danh sách việc làm | Gọi trang/API qua CloudFront | Dữ liệu đúng, không lỗi CORS | DevTools network + ALB metric |
-| Cập nhật hồ sơ | Sửa trường hợp lệ/không hợp lệ | Lưu thành công hoặc 4xx rõ ràng | DB record + log correlation ID |
-| Upload CV | Upload PDF hợp lệ và file sai loại | S3 object mã hóa; file sai bị chặn | S3 metadata + app log |
+| Hồ sơ ứng viên và CV | Cập nhật thông tin, tải PDF lên rồi mở/tải xuống CV | Thông tin được lưu; CV có thể xem và tải xuống | Trang hồ sơ + nội dung CV |
 | Mất DB | Tạm chặn kết nối trong môi trường test | API trả lỗi kiểm soát, không lộ secret | 5xx metric + alarm email |
 | Target unhealthy | Dừng service ngắn hạn | ALB đánh dấu unhealthy và alarm | Target health + SNS email |
 

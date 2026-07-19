@@ -1,5 +1,5 @@
 ---
-title: "Workshop triển khai RecruitBox trên AWS"
+title: "Workshop"
 date: 2026-07-10
 weight: 5
 chapter: false

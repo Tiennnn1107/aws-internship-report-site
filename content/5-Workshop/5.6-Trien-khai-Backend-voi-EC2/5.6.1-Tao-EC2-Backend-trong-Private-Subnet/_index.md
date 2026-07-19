@@ -1,12 +1,12 @@
 ---
-title: "Tạo EC2 Backend trong Private Subnet"
+title: "Create the EC2 Backend in a Private Subnet"
 date: 2026-07-10
 weight: 1
 chapter: false
 pre: " <b> 5.6.1. </b> "
 ---
 
-### 5.6.1. Tạo EC2 Backend trong Private Subnet
+### 5.6.1. Create the EC2 Backend in a Private Subnet
 
 ![Cấu hình Security Group EC2](</images/5-Workshop/5.6-Trien-khai-Backend-voi-EC2/5.6.1-Tao-EC2-Backend-trong-Private-Subnet/sg%20cho%20ec2.png>)
 ![Bắt đầu tạo EC2](</images/5-Workshop/5.6-Trien-khai-Backend-voi-EC2/5.6.1-Tao-EC2-Backend-trong-Private-Subnet/ec2.png>)

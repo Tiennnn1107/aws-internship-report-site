@@ -1,12 +1,12 @@
 ---
-title: "Import dữ liệu vào RDS"
+title: "Import Data into RDS"
 date: 2026-07-10
 weight: 4
 chapter: false
 pre: " <b> 5.5.4. </b> "
 ---
 
-### 5.5.4. Import dữ liệu vào RDS
+### 5.5.4. Import Data into RDS
 
 Từ EC2, kết nối đến RDS MySQL bằng tài khoản quản trị:
 

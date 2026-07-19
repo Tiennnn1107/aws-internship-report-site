@@ -1,12 +1,12 @@
 ---
-title: "Cài đặt Java và môi trường chạy Spring Boot"
+title: "Install Java and the Spring Boot Runtime"
 date: 2026-07-10
 weight: 3
 chapter: false
 pre: " <b> 5.6.3. </b> "
 ---
 
-### 5.6.3. Cài đặt Java và môi trường chạy Spring Boot
+### 5.6.3. Install Java and the Spring Boot Runtime
 
 Sau khi kết nối đến EC2 bằng **AWS Systems Manager Session Manager**, cập nhật hệ điều hành và cài đặt Java 17 cùng MySQL client:
 

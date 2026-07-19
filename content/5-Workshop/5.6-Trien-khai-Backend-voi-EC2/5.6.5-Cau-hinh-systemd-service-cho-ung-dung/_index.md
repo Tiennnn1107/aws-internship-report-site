@@ -1,14 +1,14 @@
 ---
-title: "Cấu hình systemd service cho ứng dụng"
+title: "Configure a systemd Service for the Application"
 date: 2026-07-10
 weight: 5
 chapter: false
 pre: " <b> 5.6.5. </b> "
 ---
 
-### 5.6.5. Cấu hình systemd service cho ứng dụng
+### 5.6.5. Configure a systemd Service for the Application
 
-#### Bước 1: Tạo file biến môi trường
+#### Step 1: Create the Environment Variable File
 
 Trên EC2, tạo file `/etc/recruitpro.env`:
 
@@ -44,7 +44,7 @@ sudo chown root:root /etc/recruitpro.env
 sudo chmod 600 /etc/recruitpro.env
 ```
 
-#### Bước 2: Tạo systemd service
+#### Step 2: Create the systemd Service
 
 Tạo file service:
 

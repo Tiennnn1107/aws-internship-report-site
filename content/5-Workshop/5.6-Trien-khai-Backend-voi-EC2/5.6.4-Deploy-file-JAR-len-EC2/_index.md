@@ -1,14 +1,14 @@
 ---
-title: "Deploy file JAR lên EC2"
+title: "Deploy the JAR File to EC2"
 date: 2026-07-10
 weight: 4
 chapter: false
 pre: " <b> 5.6.4. </b> "
 ---
 
-### 5.6.4. Deploy file JAR lên EC2
+### 5.6.4. Deploy the JAR File to EC2
 
-#### Bước 1: Build ứng dụng tại máy local
+#### Step 1: Build the Application Locally
 
 Tại thư mục source code, chạy:
 
@@ -29,7 +29,7 @@ aws s3 cp app.jar s3://recruitpro-deploy-artifacts-tien/app.jar
 aws s3 cp recruitment_db.sql s3://recruitpro-deploy-artifacts-tien/recruitment_db.sql
 ```
 
-#### Bước 2: Tải artifact xuống EC2
+#### Step 2: Download the Artifact to EC2
 
 Trong Session Manager, chạy:
 

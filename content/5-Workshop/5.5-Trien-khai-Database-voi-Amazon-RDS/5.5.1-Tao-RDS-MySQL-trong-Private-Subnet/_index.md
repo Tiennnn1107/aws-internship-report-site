@@ -1,12 +1,12 @@
 ---
-title: "Tạo RDS MySQL trong Private Subnet"
+title: "Create RDS for MySQL in a Private Subnet"
 date: 2026-07-10
 weight: 1
 chapter: false
 pre: " <b> 5.5.1. </b> "
 ---
 
-### 5.5.1. Tạo RDS MySQL trong Private Subnet
+### 5.5.1. Create RDS for MySQL in a Private Subnet
 
 ![Bắt đầu tạo RDS](</images/5-Workshop/5.5-Trien-khai-Database-voi-Amazon-RDS/5.5.1-Tao-RDS-MySQL-trong-Private-Subnet/rds%201.png>)
 ![Chọn MySQL](</images/5-Workshop/5.5-Trien-khai-Database-voi-Amazon-RDS/5.5.1-Tao-RDS-MySQL-trong-Private-Subnet/rds%202.png>)

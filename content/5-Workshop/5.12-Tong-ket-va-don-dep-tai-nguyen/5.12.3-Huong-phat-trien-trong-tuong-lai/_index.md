@@ -8,6 +8,8 @@ pre: " <b> 5.12.3. </b> "
 
 ### 5.12.3. Future development
 
+> **Current status:** The system **does not currently implement CI/CD**. The application is still built and deployed manually. The GitHub, CodePipeline, CodeBuild, and CodeDeploy pipeline described below is only a proposal for a future development phase.
+
 After completing the current version, RecruitPro can evolve toward the following architecture to improve availability, scalability, security, and deployment automation.
 
 ![Proposed future AWS architecture for RecruitPro](/images/5-Workshop/5.12-Tong-ket-va-don-dep-tai-nguyen/5.12.3-Huong-phat-trien-trong-tuong-lai/future.jpg)

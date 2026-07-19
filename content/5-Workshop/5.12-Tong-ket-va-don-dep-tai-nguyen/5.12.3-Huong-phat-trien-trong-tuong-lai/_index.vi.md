@@ -8,6 +8,8 @@ pre: " <b> 5.12.3. </b> "
 
 ### 5.12.3. Hướng phát triển trong tương lai
 
+> **Trạng thái hiện tại:** Hệ thống **chưa triển khai CI/CD**. Quá trình build và triển khai ứng dụng vẫn được thực hiện thủ công. Pipeline sử dụng GitHub, CodePipeline, CodeBuild và CodeDeploy dưới đây chỉ là đề xuất cho giai đoạn phát triển tiếp theo.
+
 Sau khi hoàn thiện phiên bản hiện tại, RecruitPro có thể được mở rộng theo kiến trúc bên dưới để tăng tính sẵn sàng, khả năng mở rộng, bảo mật và mức độ tự động hóa.
 
 ![Kiến trúc AWS đề xuất cho RecruitPro trong tương lai](/images/5-Workshop/5.12-Tong-ket-va-don-dep-tai-nguyen/5.12.3-Huong-phat-trien-trong-tuong-lai/future.jpg)

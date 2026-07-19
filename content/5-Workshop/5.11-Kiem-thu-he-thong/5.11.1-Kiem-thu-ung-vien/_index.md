@@ -10,9 +10,9 @@ pre: " <b> 5.11.1. </b> "
 
 The test video records the flow from candidate account registration through profile completion and CV verification.
 
-<video controls width="100%">
-  <source src="/images/5-Workshop/5.11-Kiem-thu-he-thong/candidate.mp4" type="video/mp4">
-</video>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/YHjlplzPAH4" title="Candidate testing video" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
 
 #### Tested functions
 

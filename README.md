@@ -1,187 +1,215 @@
-<h1 align="center">AWS Internship Report Site</h1>
+# Báo cáo thực tập AWS
 
-<h3 align="center">
-  A personal internship report website built with Hugo, Markdown, and the FCJ workshop template.
-</h3>
+Website báo cáo thực tập được xây dựng bằng Hugo và Markdown, dựa trên giao diện FCJ Workshop. Nội dung trình bày nhật ký thực tập, đề xuất dự án, workshop triển khai RecruitPro trên AWS, tự đánh giá và phản hồi.
 
-<p align="center">
-  <a href="https://github.com/tienhuu-dev/aws-internship-report-site">
-    <img src="https://img.shields.io/badge/Repository-GitHub-181717?style=for-the-badge&logo=github" alt="GitHub repository" />
-  </a>
-  <img src="https://img.shields.io/badge/Hugo-0.137.1-FF4088?style=for-the-badge&logo=hugo" alt="Hugo version" />
-  <img src="https://img.shields.io/badge/Status-In%20Development-0A66C2?style=for-the-badge" alt="Project status" />
-</p>
+- Website: <https://tiennnn1107.github.io/aws-internship-report-site/>
+- Repository: <https://github.com/Tiennnn1107/aws-internship-report-site>
+- Ngôn ngữ: tiếng Anh và tiếng Việt
 
----
+## Công nghệ sử dụng
 
-## 👋 About This Repository
+- Hugo Extended `0.137.1`
+- Markdown
+- Hugo Learn Theme
+- Git và GitHub
+- GitHub Actions và GitHub Pages cho website báo cáo
+- Các dịch vụ AWS được trình bày trong workshop: VPC, EC2, RDS, S3, ALB, CloudFront, CloudWatch và SNS
 
-This repository contains a Hugo-based static website for documenting my AWS internship learning journey, technical progress, weekly reports, workshop practice, self-evaluation, and feedback.
+> GitHub Actions trong repository này chỉ dùng để build và deploy website tài liệu lên GitHub Pages. Ứng dụng RecruitPro hiện vẫn được build và triển khai thủ công; CI/CD cho ứng dụng là hướng phát triển trong tương lai.
 
-The project is based on the FCJ workshop template and is customized as a personal report site for internship documentation.
+## Yêu cầu
 
----
+Trước khi chạy dự án, cần cài đặt:
 
-## 🎯 Project Purpose
+- [Git](https://git-scm.com/)
+- [Hugo Extended v0.137.1](https://github.com/gohugoio/hugo/releases/tag/v0.137.1)
 
-- Document internship progress in a structured format.
-- Maintain weekly worklogs and learning outcomes.
-- Present AWS-related workshop practice and technical notes.
-- Keep a clean source branch for future GitHub Pages deployment.
-- Provide mentors with a clear and reviewable report website.
+Kiểm tra phiên bản Hugo:
 
----
-
-## 🧑‍💻 Author
-
-<h3 align="left">Hi 👋, I'm Tien Huu</h3>
-
-- 🔭 I am currently working on **AWS Internship Report Site**.
-- 🌱 I am currently learning **AWS, Hugo, GitHub Pages, and technical documentation**.
-- 📝 I use this repository to document internship progress and cloud learning outcomes.
-- 💻 GitHub: [tienhuu-dev](https://github.com/tienhuu-dev)
-- 🔗 LinkedIn: [Tien Huu](https://www.linkedin.com/in/tien-huu-8a436a3a2)
-- 📫 Email: [daohuutien2004@gmail.com](mailto:daohuutien2004@gmail.com)
-
----
-
-## 🛠️ Technology Stack
-
-![Hugo](https://img.shields.io/badge/Hugo-FF4088?style=for-the-badge&logo=hugo&logoColor=white)
-![Markdown](https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
-![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazonwebservices&logoColor=white)
-
-- **Static Site Generator:** Hugo Extended
-- **Theme:** Hugo Learn Theme
-- **Content Format:** Markdown
-- **Version Control:** Git, GitHub
-- **Deployment Target:** GitHub Pages
-
----
-
-## 📚 Template Source
-
-This project is based on the following FCJ workshop template:
-
-```text
-https://github.com/thienluhoan/fcj-workshop-template
+```powershell
+hugo version
 ```
 
-The original template is kept as an upstream reference for future comparison or updates.
+Kết quả cần có từ khóa `extended` và phiên bản tương thích với `0.137.1`.
 
----
+## Tải source code
 
-## ✅ Required Hugo Version
+Clone repository cùng theme submodule:
 
-This template has compatibility constraints with newer Hugo versions. The confirmed working version is:
-
-```text
-hugo v0.137.1+extended windows/amd64
+```powershell
+git clone --recurse-submodules https://github.com/Tiennnn1107/aws-internship-report-site.git
+cd aws-internship-report-site
 ```
 
-Recommended version:
+Nếu đã clone repository nhưng chưa tải theme:
 
-```text
-Hugo Extended v0.137.1
+```powershell
+git submodule update --init --recursive
 ```
 
----
+## Chạy website trên máy local
 
-## 🚀 Local Development
-
-Run the development server:
+Khởi động Hugo development server:
 
 ```powershell
 hugo server -D
 ```
 
-The website will be available at:
+Mở địa chỉ được Hugo hiển thị trong terminal, thông thường là:
 
 ```text
-http://localhost:1313/
+http://localhost:1313/aws-internship-report-site/
 ```
 
----
+Hugo tự động tải lại trang khi file Markdown, layout hoặc tài nguyên tĩnh thay đổi.
 
-## 🏗️ Build
+## Build website
 
-Generate the static website:
+Kiểm tra khả năng build mà không ghi kết quả ra thư mục `public`:
 
 ```powershell
-hugo
+hugo --renderToMemory
 ```
 
-The generated output is written to:
+Build bản production:
 
-```text
-public/
+```powershell
+hugo --minify
 ```
 
-The `public/` directory is ignored from the source branch because it is a generated build output.
+Kết quả được tạo trong thư mục `public/`. Đây là dữ liệu sinh tự động và không cần commit.
 
----
-
-## 🌿 Branch Strategy
-
-| Branch | Purpose |
-| --- | --- |
-| `main` | Stable branch for reviewed code and future deployment. |
-| `feature/site-foundation` | Development branch for preparing the report site foundation. |
-| `backup/template-history` | Local backup branch that preserves the original template history. |
-
----
-
-## 📁 Repository Structure
+## Cấu trúc dự án
 
 ```text
 .
-├── archetypes/
-├── content/
-├── layouts/
-├── static/
-├── themes/
-│   └── hugo-theme-learn/
-├── config.toml
-├── .gitignore
+├── .github/workflows/       # Workflow deploy GitHub Pages
+├── archetypes/              # Mẫu front matter của Hugo
+├── content/                 # Nội dung Markdown song ngữ
+├── layouts/                 # Layout và shortcode tùy chỉnh
+├── static/                  # Hình ảnh, CSS và tài nguyên tĩnh
+├── themes/                  # Hugo theme dạng Git submodule
+├── config.toml              # Cấu hình website và ngôn ngữ
 └── README.md
 ```
 
-Main directories:
+Các phần nội dung chính:
 
-- `content/`: Markdown content for report sections.
-- `layouts/`: Custom Hugo layout overrides.
-- `static/`: Static assets such as images, CSS, and icons.
-- `themes/`: Hugo theme used by the site.
-- `config.toml`: Main Hugo site configuration.
+```text
+content/
+├── 1-Worklog/               # Nhật ký thực tập
+├── 2-Proposal/              # Đề xuất dự án
+├── 3-BlogsTranslated/       # Blog đã dịch
+├── 4-EventParticipated/     # Sự kiện đã tham gia
+├── 5-Workshop/              # Workshop triển khai trên AWS
+├── 6-SelfEvaluation/        # Tự đánh giá
+└── 7-Feedback/              # Phản hồi
+```
 
+## Quy ước nội dung song ngữ
+
+Mỗi trang sử dụng hai file:
+
+- `_index.md`: nội dung tiếng Anh.
+- `_index.vi.md`: nội dung tiếng Việt.
+
+Ví dụ:
+
+```text
+content/5-Workshop/5.11-Kiem-thu-he-thong/
+├── _index.md
+└── _index.vi.md
+```
+
+Front matter cơ bản:
+
+```yaml
 ---
-
-## 🧭 Current Report Sections
-
-The original template structure is currently preserved:
-
-- Worklog
-- Proposal
-- Blogs Translated
-- Events Participated
-- Workshop
-- Self-evaluation
-- Feedback
-
-These sections will be customized progressively to match the AWS internship report requirements.
-
+title: "System testing"
+date: 2026-07-10
+weight: 11
+chapter: false
+pre: " <b> 5.11. </b> "
 ---
+```
 
-## 🔗 Connect with Me
+Lưu ý:
 
-[![GitHub](https://img.shields.io/badge/GitHub-tienhuu--dev-181717?style=for-the-badge&logo=github)](https://github.com/tienhuu-dev)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Tien%20Huu-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/tien-huu-8a436a3a2)
-[![Email](https://img.shields.io/badge/Email-daohuutien2004%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:daohuutien2004@gmail.com)
+- `title` của `_index.md` phải viết bằng tiếng Anh.
+- `title` của `_index.vi.md` phải viết bằng tiếng Việt.
+- `weight` quyết định thứ tự hiển thị trong menu.
+- `pre` chứa số thứ tự của mục.
+- Hai bản ngôn ngữ nên có cùng cấu trúc và số mục.
 
----
+## Thêm hình ảnh
 
-<p align="center">
-  Built with ❤️ using Hugo and Markdown.
-</p>
+Đặt hình trong `static/images/` theo đúng cấu trúc nội dung. Ví dụ:
+
+```text
+static/images/5-Workshop/5.2-Chuan-bi-moi-truong-trien-khai/source-code.png
+```
+
+Nhúng hình vào Markdown:
+
+```markdown
+![Spring Boot source code](/images/5-Workshop/5.2-Chuan-bi-moi-truong-trien-khai/source-code.png)
+```
+
+Nên dùng tên file không dấu, không chứa khoảng trắng và mô tả ảnh đúng ngôn ngữ của trang.
+
+## Nhúng video YouTube
+
+Không commit video dung lượng lớn vào repository. Tải video lên YouTube rồi nhúng bằng mã sau:
+
+```html
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/VIDEO_ID"
+    title="Testing video"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen>
+  </iframe>
+</div>
+```
+
+Thay `VIDEO_ID` bằng mã nằm sau `youtu.be/` hoặc tham số `v=` của URL YouTube.
+
+## Kiểm tra trước khi commit
+
+```powershell
+hugo --renderToMemory
+git diff --check
+git status --short
+```
+
+Nếu không có lỗi, commit và push:
+
+```powershell
+git add -A
+git commit -m "Mô tả thay đổi"
+git push origin main
+```
+
+## Triển khai GitHub Pages
+
+Workflow tại `.github/workflows/hugo.yml` tự động chạy khi có commit được push lên `main`:
+
+1. Checkout source code và theme submodule.
+2. Cài Hugo Extended `0.137.1`.
+3. Build website bằng `hugo --minify`.
+4. Upload artifact.
+5. Deploy lên GitHub Pages.
+
+Có thể theo dõi quá trình deploy trong tab **Actions** của repository.
+
+## Tác giả
+
+**Tiến Trần Tân**
+
+- GitHub: <https://github.com/Tiennnn1107>
+- LinkedIn: <https://www.linkedin.com/in/ti%E1%BA%BFn-tr%E1%BA%A7n-t%C3%A2n-752650403/>
+
+## Nguồn giao diện
+
+Dự án được phát triển dựa trên FCJ Workshop Template và Hugo Learn Theme, sau đó được tùy chỉnh cho báo cáo thực tập AWS.

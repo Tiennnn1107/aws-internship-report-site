@@ -47,6 +47,8 @@ The system is deployed within a dedicated VPC. Public subnets contain the Applic
 
 Amazon CloudWatch collects metrics from EC2, ALB, and RDS. CloudWatch alarms are configured for high EC2 CPU utilization, ALB target 5XX errors, unhealthy ALB targets, high RDS CPU utilization, and low RDS free storage. When an alarm is triggered, CloudWatch sends a notification to an SNS topic, which then delivers an email alert to the administrator.
 
+![RecruitBox AWS solution architecture](/images/2-Proposal/architected.jpg)
+
 ### High-Level Architecture Flow
 
 ```text

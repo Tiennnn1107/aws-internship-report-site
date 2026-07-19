@@ -8,19 +8,9 @@ pre: " <b> 5.3. </b> "
 
 ## Kiến trúc tổng thể
 
-```mermaid
-flowchart LR
-  U[Người dùng] --> CF[CloudFront]
-  CF --> ALB[Application Load Balancer]
-  ALB --> EC2[EC2 Spring Boot\nPrivate App Subnet]
-  EC2 --> RDS[(RDS MySQL\nPrivate DB Subnet)]
-  EC2 --> CV[(S3 CV)]
-  S3A[(S3 Artifact)] --> EC2
-  CW[CloudWatch] -. Log/Metric .-> EC2
-  CW -. Metric .-> ALB
-  CW -. Metric .-> RDS
-  CW --> SNS[SNS Email]
-```
+![Kiến trúc AWS tổng thể của RecruitPro](</images/5-Workshop/5.3-Thiet-ke-kien-truc-AWS/5.3.1-Tong-quan-kien-truc-he-thong/hientai.jpg>)
+
+Luồng request chính là **Người dùng → CloudFront → Application Load Balancer → EC2 Spring Boot → RDS MySQL**. Backend lưu CV trên S3, tải deployment artifact từ một S3 bucket riêng và gửi dữ liệu vận hành đến CloudWatch cùng SNS.
 
 ## Dịch vụ và lý do lựa chọn
 

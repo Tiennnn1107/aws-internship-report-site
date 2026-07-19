@@ -10,19 +10,9 @@ pre: " <b> 5.3. </b> "
 
 ## Overall architecture
 
-```mermaid
-flowchart LR
-  U[User] --> CF[CloudFront]
-  CF --> ALB[Application Load Balancer]
-  ALB --> EC2[EC2 Spring Boot\nPrivate App Subnet]
-  EC2 --> RDS[(RDS MySQL\nPrivate DB Subnet)]
-  EC2 --> CV[(S3 CV Storage)]
-  S3A[(S3 Artifacts)] --> EC2
-  CW[CloudWatch] -. Logs and metrics .-> EC2
-  CW -. Metrics .-> ALB
-  CW -. Metrics .-> RDS
-  CW --> SNS[SNS Email]
-```
+![Overall AWS architecture of RecruitPro](</images/5-Workshop/5.3-Thiet-ke-kien-truc-AWS/5.3.1-Tong-quan-kien-truc-he-thong/hientai.jpg>)
+
+The main request path is **User → CloudFront → Application Load Balancer → EC2 Spring Boot → RDS for MySQL**. The backend stores CVs in S3, retrieves deployment artifacts from a separate S3 bucket, and publishes operational data to CloudWatch and SNS.
 
 ## Services and rationale
 

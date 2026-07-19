@@ -17,7 +17,7 @@ java -version
 mysql --version
 ```
 
-Tạo thư mục dùng để lưu ứng dụng và cấp quyền sở hữu cho người dùng `ec2-user`:
+Create the application directory and assign ownership to the `ec2-user` user:
 
 ```bash
 sudo mkdir -p /opt/recruitpro
@@ -25,5 +25,5 @@ sudo chown ec2-user:ec2-user /opt/recruitpro
 ```
 
 {{% notice note %}}
-Các lệnh trên áp dụng cho Amazon Linux 2023. EC2 cần có đường ra Internet thông qua NAT Gateway hoặc các VPC endpoint phù hợp để tải package.
+The commands above apply to Amazon Linux 2023. The EC2 instance requires outbound connectivity through a NAT Gateway or suitable VPC endpoints to download packages.
 {{% /notice %}}

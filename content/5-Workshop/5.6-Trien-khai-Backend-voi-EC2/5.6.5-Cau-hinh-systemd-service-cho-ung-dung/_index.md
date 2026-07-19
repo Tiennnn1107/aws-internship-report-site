@@ -16,7 +16,7 @@ Trên EC2, tạo file `/etc/recruitpro.env`:
 sudo nano /etc/recruitpro.env
 ```
 
-Thêm cấu hình sau và thay các giá trị đặt trong dấu `<...>`:
+Add the following configuration and replace the values enclosed in `<...>`:
 
 ```ini
 SPRING_DATASOURCE_URL=jdbc:mysql://<RDS_ENDPOINT>:3306/recruitpro

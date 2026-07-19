@@ -14,7 +14,7 @@ Từ EC2, kết nối đến RDS MySQL bằng tài khoản quản trị:
 mysql -h <RDS_ENDPOINT> -P 3306 -u admin -p
 ```
 
-Tạo database cho ứng dụng trong MySQL:
+Create the application database in MySQL:
 
 ```sql
 CREATE DATABASE IF NOT EXISTS recruitpro;
@@ -41,4 +41,4 @@ SELECT * FROM users LIMIT 5;
 EXIT;
 ```
 
-Thay `<RDS_ENDPOINT>` bằng endpoint của RDS. Khi được yêu cầu, nhập mật khẩu của tài khoản `admin`; không ghi mật khẩu trực tiếp trong câu lệnh.
+Replace `<RDS_ENDPOINT>` with the RDS endpoint. When prompted, enter the password for the `admin` account; do not place the password directly in the command.

@@ -16,7 +16,7 @@ Khi làm việc với nhóm **NTM**, các thành viên có trao đổi và hỗ 
 
 Theo tôi, chương trình có thể bổ sung thêm một số buổi thực hành chung hoặc review kiến trúc để các nhóm học hỏi lẫn nhau. Nếu có thêm nội dung về chi phí AWS và CI/CD thì sẽ hữu ích hơn cho sinh viên.
 
-## Reflection
+## Nhìn lại quá trình thực tập
 
 Khó khăn của tôi trong thời gian đầu là chưa quen với cách làm việc và đôi khi chưa biết nên bắt đầu từ đâu khi nhận một nội dung mới. Tôi cũng còn ngại trao đổi khi chưa hiểu rõ vấn đề. Sau đó, tôi chủ động đọc tài liệu trước, ghi lại những điểm chưa rõ và trao đổi cụ thể hơn với mentor cũng như các thành viên trong nhóm.
 

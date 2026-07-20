@@ -16,6 +16,12 @@ Khi làm việc với nhóm **NTM**, các thành viên có trao đổi và hỗ 
 
 Theo tôi, chương trình có thể bổ sung thêm một số buổi thực hành chung hoặc review kiến trúc để các nhóm học hỏi lẫn nhau. Nếu có thêm nội dung về chi phí AWS và CI/CD thì sẽ hữu ích hơn cho sinh viên.
 
+## Reflection
+
+Khó khăn của tôi trong thời gian đầu là chưa quen với cách làm việc và đôi khi chưa biết nên bắt đầu từ đâu khi nhận một nội dung mới. Tôi cũng còn ngại trao đổi khi chưa hiểu rõ vấn đề. Sau đó, tôi chủ động đọc tài liệu trước, ghi lại những điểm chưa rõ và trao đổi cụ thể hơn với mentor cũng như các thành viên trong nhóm.
+
+Trong thời gian tới, tôi muốn tiếp tục cải thiện khả năng giao tiếp, quản lý thời gian và cách trình bày vấn đề. Tôi cũng mong có thêm cơ hội tham gia các dự án thực tế để hiểu rõ hơn về môi trường làm việc và định hướng phát triển của bản thân.
+
 Nhìn chung, tôi hài lòng với kỳ thực tập này. Tôi đã học được thêm kiến thức về AWS, cách tìm tài liệu và xử lý lỗi. Tôi mong muốn tiếp tục tìm hiểu về Cloud và cải thiện dự án trong thời gian tới.
 
 Cuối cùng, tôi xin cảm ơn mentor, team admin và các thành viên đã hỗ trợ tôi trong suốt quá trình thực tập.

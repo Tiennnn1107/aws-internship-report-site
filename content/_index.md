@@ -25,11 +25,13 @@ chapter: false
 
 &emsp; **Class:** 22DTHE7
 
+&emsp; **Team Name:** NTM
+
 &emsp; **Internship Company:** Amazon Web Services Vietnam Co., Ltd.
 
 &emsp; **Internship Position:** FCJ Cloud Intern
 
-&emsp; **Internship Duration:** From 17/04/2026 to 10/07/2026
+&emsp; **Internship Duration:** From 17/04/2026 to 30/07/2026
 
 ![Your profile picture](/images/avatar.jpg)
 

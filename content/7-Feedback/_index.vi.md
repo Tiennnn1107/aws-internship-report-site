@@ -5,40 +5,17 @@ weight: 7
 chapter: false
 pre: " <b> 7. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
->Tại đây bạn có thể tự do đóng góp ý kiến cá nhân về những trải nghiệm khi tham gia chương trình First Cloud Journey, giúp team FCJ cải thiện những vấn đề còn thiếu sót dựa trên các hạng mục sau:
+# Chia sẻ và đóng góp ý kiến
 
-### Đánh giá chung
+Trong thời gian tham gia chương trình First Cloud Journey, tôi cảm thấy môi trường học tập khá thoải mái và mọi người sẵn sàng hỗ trợ khi tôi gặp khó khăn. Mentor hướng dẫn rõ ràng và thường để tôi tự tìm hiểu trước, sau đó mới góp ý những phần chưa đúng.
 
-**1. Môi trường làm việc**  
-Môi trường làm việc rất thân thiện và cởi mở. Các thành viên trong FCJ luôn sẵn sàng hỗ trợ khi mình gặp khó khăn, kể cả ngoài giờ làm việc. Không gian làm việc gọn gàng, thoải mái, giúp mình tập trung tốt hơn. Tuy nhiên, mình nghĩ có thể bổ sung thêm một số buổi giao lưu hoặc team bonding để mọi người hiểu nhau hơn.
+Điều tôi thích nhất là được làm một dự án thực tế thay vì chỉ học lý thuyết. Qua dự án RecruitPro, tôi hiểu thêm cách triển khai một ứng dụng lên AWS và biết được một số lỗi thường gặp trong quá trình cấu hình.
 
-**2. Sự hỗ trợ của mentor / team admin**  
-Mentor hướng dẫn rất chi tiết, giải thích rõ ràng khi mình chưa hiểu và luôn khuyến khích mình đặt câu hỏi. Team admin hỗ trợ các thủ tục, tài liệu và tạo điều kiện để mình làm việc thuận lợi. Mình đánh giá cao việc mentor cho phép mình thử và tự xử lý vấn đề thay vì chỉ đưa đáp án.
+Khi làm việc với nhóm **NTM**, các thành viên có trao đổi và hỗ trợ nhau trong quá trình thực hiện. Tuy nhiên, đôi lúc việc phân chia và cập nhật tiến độ chưa đều nên nhóm cần chủ động trao đổi thường xuyên hơn.
 
-**3. Sự phù hợp giữa công việc và chuyên ngành học**  
-Công việc mình được giao phù hợp với kiến thức mình đã học ở trường, đồng thời mở rộng thêm những mảng mới mà mình chưa từng được tiếp cận. Nhờ vậy, mình vừa củng cố kiến thức nền tảng, vừa học thêm kỹ năng thực tế.
+Theo tôi, chương trình có thể bổ sung thêm một số buổi thực hành chung hoặc review kiến trúc để các nhóm học hỏi lẫn nhau. Nếu có thêm nội dung về chi phí AWS và CI/CD thì sẽ hữu ích hơn cho sinh viên.
 
-**4. Cơ hội học hỏi & phát triển kỹ năng**  
-Trong quá trình thực tập, mình học được nhiều kỹ năng mới như sử dụng công cụ quản lý dự án, kỹ năng làm việc nhóm, và cả cách giao tiếp chuyên nghiệp trong môi trường công ty. Mentor cũng chia sẻ nhiều kinh nghiệm thực tế giúp mình định hướng tốt hơn cho sự nghiệp.
+Nhìn chung, tôi hài lòng với kỳ thực tập này. Tôi đã học được thêm kiến thức về AWS, cách tìm tài liệu và xử lý lỗi. Tôi mong muốn tiếp tục tìm hiểu về Cloud và cải thiện dự án trong thời gian tới.
 
-**5. Văn hóa & tinh thần đồng đội**  
-Văn hóa công ty rất tích cực: mọi người tôn trọng lẫn nhau, làm việc nghiêm túc nhưng vẫn vui vẻ. Khi có dự án gấp, mọi người cùng nhau cố gắng, hỗ trợ không phân biệt vị trí. Điều này giúp mình cảm thấy mình là một phần của tập thể, dù chỉ là thực tập sinh.
-
-**6. Chính sách / phúc lợi cho thực tập sinh**  
-Công ty có hỗ trợ phụ cấp thực tập và tạo điều kiện về thời gian linh hoạt khi cần thiết. Ngoài ra, việc được tham gia các buổi đào tạo nội bộ là một điểm cộng lớn.
-
-
-### Một số câu hỏi khác
-- Điều bạn **hài lòng nhất** trong thời gian thực tập?  
-- Điều bạn nghĩ công ty **cần cải thiện** cho các thực tập sinh sau?  
-- Nếu giới thiệu cho bạn bè, bạn có **khuyên họ thực tập ở đây không**? Vì sao?  
-
-
-### Đề xuất & mong muốn
-- Bạn có đề xuất gì để cải thiện trải nghiệm trong kỳ thực tập?  
-- Bạn có muốn tiếp tục chương trình này trong tương lai?
-- Góp ý khác (tự do chia sẻ):
+Cuối cùng, tôi xin cảm ơn mentor, team admin và các thành viên đã hỗ trợ tôi trong suốt quá trình thực tập.

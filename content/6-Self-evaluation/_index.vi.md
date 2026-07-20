@@ -16,14 +16,14 @@ Qua quá trình thực tập, tôi đã biết thêm về VPC, EC2, RDS, S3, Loa
 
 | Tiêu chí | Mức đánh giá |
 |---|---|
-| Kiến thức chuyên môn | Tốt |
+| Kiến thức chuyên môn | Khá |
 | Khả năng học hỏi | Tốt |
-| Tính chủ động | Khá |
+| Tính chủ động | Tốt |
 | Tinh thần trách nhiệm | Tốt |
 | Kỹ năng giao tiếp | Khá |
 | Làm việc nhóm | Tốt |
 | Giải quyết vấn đề | Khá |
-| Đánh giá chung | Tốt |
+| Đánh giá chung | Khá |
 
 ## Điểm cần cải thiện
 

@@ -26,4 +26,4 @@ On Windows, run:
 
 4. Confirm that the build completes successfully and that the JAR file is created in the `target` directory. This artifact will be uploaded and deployed to the backend EC2 instance in a later step.
 
-![Source code Spring Boot](/images/5-Workshop/5.2-Chuan-bi-moi-truong-trien-khai/5.2.1-Chuan-bi-source-code-Spring-Boot/source%20code.png)
+![Source code Spring Boot](/images/5-Workshop/5.2-Chuan-bi-moi-truong-trien-khai/5.2.1-Chuan-bi-source-code-Spring-Boot/source-code.jpg)

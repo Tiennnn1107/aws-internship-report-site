@@ -10,7 +10,7 @@ pre: " <b> 7. </b> "
 
 During the First Cloud Journey program, I found the learning environment comfortable, and people were willing to help when I had difficulties. The mentor gave clear guidance and usually allowed me to investigate first before pointing out what needed to be corrected.
 
-What I liked most was working on a practical project instead of only learning theory. Through the RecruitPro project, I learned how to deploy an application on AWS and became familiar with several common configuration issues.
+What satisfied me most was the friendly environment and the mentor's enthusiastic support. Whenever I had difficulties, the mentor was willing to explain the problem and point out what I needed to improve. I also had the opportunity to work on a practical project instead of only learning theory. Through RecruitPro, I learned how to deploy an application on AWS and became familiar with several common configuration issues.
 
 While working with team **NTM**, the members discussed tasks and supported one another. However, task assignment and progress updates were not always consistent, so the team could communicate more frequently.
 

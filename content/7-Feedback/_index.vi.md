@@ -10,7 +10,7 @@ pre: " <b> 7. </b> "
 
 Trong thời gian tham gia chương trình First Cloud Journey, tôi cảm thấy môi trường học tập khá thoải mái và mọi người sẵn sàng hỗ trợ khi tôi gặp khó khăn. Mentor hướng dẫn rõ ràng và thường để tôi tự tìm hiểu trước, sau đó mới góp ý những phần chưa đúng.
 
-Điều tôi thích nhất là được làm một dự án thực tế thay vì chỉ học lý thuyết. Qua dự án RecruitPro, tôi hiểu thêm cách triển khai một ứng dụng lên AWS và biết được một số lỗi thường gặp trong quá trình cấu hình.
+Điều tôi hài lòng nhất là môi trường thân thiện và mentor rất nhiệt tình. Khi tôi gặp khó khăn, mentor luôn sẵn sàng giải thích và góp ý để tôi biết mình cần sửa ở đâu. Ngoài ra, tôi còn được làm dự án thực tế thay vì chỉ học lý thuyết. Qua dự án RecruitPro, tôi hiểu thêm cách triển khai một ứng dụng lên AWS và biết được một số lỗi thường gặp trong quá trình cấu hình.
 
 Khi làm việc với nhóm **NTM**, các thành viên có trao đổi và hỗ trợ nhau trong quá trình thực hiện. Tuy nhiên, đôi lúc việc phân chia và cập nhật tiến độ chưa đều nên nhóm cần chủ động trao đổi thường xuyên hơn.
 
